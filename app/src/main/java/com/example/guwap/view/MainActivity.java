@@ -1,4 +1,4 @@
-package com.example.guwap.viewmodel;
+package com.example.guwap.view;
 
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
