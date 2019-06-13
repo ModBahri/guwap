@@ -9,7 +9,9 @@ import android.widget.TextView;
 import android.arch.lifecycle.ViewModelProvider;
 
 import com.example.guwap.R;
-import com.example.guwap.entity.Player;
+import com.example.guwap.entity.Difficulty;
+import com.example.guwap.entity.Skills;
+import com.example.guwap.model.Player;
 
 public class ConfigurationActivity extends AppCompatActivity {
     /**View model reference*/
@@ -71,18 +73,23 @@ public class ConfigurationActivity extends AppCompatActivity {
          * Creating variables to hold entered values, so they can be later checked.
          */
         String tName = nameField.getText().toString();
-        //Difficulty tDifficulty = difficulty.getSelectedItem();
-        //String tPilot = Integer.parseInt(pilot.getText());
-        //String tPilot = Integer.parseInt(pilot.getText());
-        //String tPilot = Integer.parseInt(pilot.getText());
-        //String tPilot = Integer.parseInt(pilot.getText());
+        Difficulty tDifficulty = Difficulty.valueOf(difficulty
+                .getSelectedItem()
+                .toString()
+                .substring(0,1)
+                .toUpperCase());
+        int tPilot = Integer.parseInt(pilot.getText());
+        int tEngineer = Integer.parseInt(engineer.getText());
+        int tFighter = Integer.parseInt(fighter.getText());
+        int tTrader = Integer.parseInt(trader.getText());
+
         if (tPilot == null || tEngineer == null || tTrader == null || tFighter == null) {
             throw new Exception("Cannot be null");
         }
         if (tPilot + tEngineer + tTrader + tFighter > 16) {
             throw new Exception("Too many points");
         }
-        if(tName == null){
+        if (tName == null) {
             throw new Exception("Name must have a value");
         }
 
