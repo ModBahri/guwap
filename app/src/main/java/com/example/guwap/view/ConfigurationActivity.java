@@ -1,17 +1,19 @@
 package com.example.guwap.view;
 
 import android.os.Bundle;
+import android.arch.lifecycle.ViewModelProviders;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.arch.lifecycle.ViewModelProvider;
+
 
 import com.example.guwap.R;
 import com.example.guwap.entity.Difficulty;
 import com.example.guwap.entity.Skills;
 import com.example.guwap.model.Player;
+import com.example.guwap.viewmodel.ConfigurationViewModel;
 
 public class ConfigurationActivity extends AppCompatActivity {
     /**View model reference*/
@@ -19,7 +21,6 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     /** Widgets used in this model */
     private TextView nameField;
-    private EditText nameField;
     private Spinner difficulty;
     private EditText pilot;
     private EditText engineer;
@@ -38,17 +39,16 @@ public class ConfigurationActivity extends AppCompatActivity {
         /**
          * Grab the dialog widgets for later use
          */
-        nameField = findViewById(R.id.);
-        difficulty =   findViewById(R.id.);
-        pilot = findViewById(R.id);
-        engineer = findViewById(R.id);
-        trader = findViewById(R.id);
-        fighter = findViewById(R.id);
+        nameField = findViewById(R.id.char_editor);
+        difficulty =   findViewById(R.id.diff_selector);
+        pilot = findViewById(R.id.pilot);
+        engineer = findViewById(R.id.engineer);
+        trader = findViewById(R.id.trader);
+        fighter = findViewById(R.id.fighter);
 
         /**
          * Add text to button
          */
-        button.setText("Add");
         pilot.setText("0");
         engineer.setText("0");
         trader.setText("0");
@@ -57,7 +57,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         /**
          * Set the viewmodel
          */
-        viewModel = ViewModelProvider.of(this).get(ConfigurationViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
 
         difficulty.setSelection(1);
     }
@@ -67,7 +67,7 @@ public class ConfigurationActivity extends AppCompatActivity {
      *
      * @param view the button that was pressed
      */
-    public void onAddPressed(View view){
+    public void onAddPressed(View view) throws Exception{
 
         /**
          * Creating variables to hold entered values, so they can be later checked.
@@ -78,14 +78,11 @@ public class ConfigurationActivity extends AppCompatActivity {
                 .toString()
                 .substring(0,1)
                 .toUpperCase());
-        int tPilot = Integer.parseInt(pilot.getText());
-        int tEngineer = Integer.parseInt(engineer.getText());
-        int tFighter = Integer.parseInt(fighter.getText());
-        int tTrader = Integer.parseInt(trader.getText());
+        int tPilot = Integer.parseInt(pilot.getText().toString());
+        int tEngineer = Integer.parseInt(engineer.getText().toString());
+        int tFighter = Integer.parseInt(fighter.getText().toString());
+        int tTrader = Integer.parseInt(trader.getText().toString());
 
-        if (tPilot == null || tEngineer == null || tTrader == null || tFighter == null) {
-            throw new Exception("Cannot be null");
-        }
         if (tPilot + tEngineer + tTrader + tFighter > 16) {
             throw new Exception("Too many points");
         }

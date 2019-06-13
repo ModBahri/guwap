@@ -1,6 +1,9 @@
-package com.example.guwap.Model;
+package com.example.guwap.entity;
+
+import com.example.guwap.model.Player;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Interactor {
     private List<Player> allPlayers;
