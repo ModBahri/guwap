@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/char_label"
+        android:layout_width="141dp"
+        android:layout_height="34dp"
+        android:text="Character Name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="45dp" />
+
+    <EditText
+        android:id="@+id/char_editor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="79dp" />
+
+    <TextView
+        android:id="@+id/diff_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Difficulty"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="157dp" />
+
+    <Spinner
+        android:id="@+id/diff_selector"
+        android:layout_width="347dp"
+        android:layout_height="23dp"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="209dp" />
+
+    <TextView
+        android:id="@+id/skill_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skill Points"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="266dp" />
+
+    <EditText
+        android:id="@+id/pilot"
+        android:layout_width="45dp"
+        android:layout_height="43dp"
+        android:ems="10"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="310dp" />
+
+    <EditText
+        android:id="@+id/engineer"
+        android:layout_width="45dp"
+        android:layout_height="43dp"
+        android:ems="10"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="255dp"
+        tools:layout_editor_absoluteY="310dp" />
+
+    <EditText
+        android:id="@+id/fighter"
+        android:layout_width="45dp"
+        android:layout_height="43dp"
+        android:ems="10"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="425dp" />
+
+    <EditText
+        android:id="@+id/trader"
+        android:layout_width="45dp"
+        android:layout_height="43dp"
+        android:ems="10"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="255dp"
+        tools:layout_editor_absoluteY="425dp" />
+
+    <TextView
+        android:id="@+id/pilot_label"
+        android:layout_width="48dp"
+        android:layout_height="20dp"
+        android:text="Pilot"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="367dp" />
+
+    <TextView
+        android:id="@+id/engineer_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Engineer"
+        tools:layout_editor_absoluteX="255dp"
+        tools:layout_editor_absoluteY="367dp" />
+
+    <TextView
+        android:id="@+id/fighter_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fighter"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="493dp" />
+
+    <TextView
+        android:id="@+id/trader_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trader"
+        tools:layout_editor_absoluteX="258dp"
+        tools:layout_editor_absoluteY="493dp" />
+
+    <Button
+        android:id="@+id/create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Character"
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="625dp" />
+
+</android.support.constraint.ConstraintLayout>
