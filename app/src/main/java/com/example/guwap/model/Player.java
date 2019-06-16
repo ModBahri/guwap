@@ -1,8 +1,6 @@
 package com.example.guwap.model;
 
 import com.example.guwap.entity.Difficulty;
-import com.example.guwap.entity.Skills;
-import com.example.guwap.model.IEntity;
 
 public class Player implements IEntity {
     private String name;
@@ -10,6 +8,10 @@ public class Player implements IEntity {
     private final int INITIAL_SKILL_POINTS = 16;
     private final int INITIAL_CREDITS = 1000;
     private int pilot, fighter, engineer, trader;
+
+    public Player() {
+        this("Name", Difficulty.NORMAL, 0, 0, 0, 0);
+    }
 
     public Player(String name, Difficulty difficulty, int pilot, int engineer, int fighter, int trader) {
         this.name = name;

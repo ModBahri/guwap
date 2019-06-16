@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -11,7 +12,6 @@ import android.widget.TextView;
 
 import com.example.guwap.R;
 import com.example.guwap.entity.Difficulty;
-import com.example.guwap.entity.Skills;
 import com.example.guwap.model.Player;
 import com.example.guwap.viewmodel.ConfigurationViewModel;
 
@@ -36,30 +36,41 @@ public class ConfigurationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
 
-        /**
-         * Grab the dialog widgets for later use
+        /*
+          Grab the dialog widgets for later use
          */
         nameField = findViewById(R.id.char_editor);
-        difficulty =   findViewById(R.id.diff_selector);
+        difficulty = findViewById(R.id.diff_selector);
         pilot = findViewById(R.id.pilot);
         engineer = findViewById(R.id.engineer);
         trader = findViewById(R.id.trader);
         fighter = findViewById(R.id.fighter);
 
-        /**
-         * Add text to button
+        /*
+          Set up adapter to display the difficulty levels in the spinner
          */
+        ArrayAdapter<Difficulty> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Difficulty.values());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        difficulty.setAdapter(adapter);
+
+
+        /*
+          Add default text to buttons
+         */
+        player = new Player();
+        nameField.setText(player.getName());
+        difficulty.setSelection(2);
         pilot.setText("0");
         engineer.setText("0");
         trader.setText("0");
         fighter.setText("0");
 
-        /**
-         * Set the viewmodel
+        /*
+          Set the viewmodel
          */
         viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
 
-        difficulty.setSelection(1);
+
     }
 
     /**
@@ -69,8 +80,8 @@ public class ConfigurationActivity extends AppCompatActivity {
      */
     public void onAddPressed(View view) throws Exception{
 
-        /**
-         * Creating variables to hold entered values, so they can be later checked.
+        /*
+          Creating variables to hold entered values, so they can be later checked.
          */
         String tName = nameField.getText().toString();
         Difficulty tDifficulty = Difficulty.valueOf(difficulty

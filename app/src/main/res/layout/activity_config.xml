@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    tools:context="com.example.guwap.view.ConfigurationActivity"
+
 
     <TextView
         android:id="@+id/char_label"
-        android:layout_width="141dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="17dp"
         android:text="Character Name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toTopOf="@+id/char_editor"
-        app:layout_constraintStart_toStartOf="@+id/char_editor"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <EditText
         android:id="@+id/char_editor"
@@ -26,154 +23,144 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="96dp"
-        android:layout_marginBottom="123dp"
+        android:layout_marginTop="25dp"
+        android:layout_below="@id/char_label"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintBottom_toTopOf="@+id/skill_label"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Name" />
 
     <TextView
         android:id="@+id/diff_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="32dp"
+        android:layout_below="@id/char_editor"
         android:text="Difficulty"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toTopOf="@+id/diff_selector"
-        app:layout_constraintStart_toStartOf="@+id/diff_selector" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <Spinner
         android:id="@+id/diff_selector"
-        android:layout_width="347dp"
+        android:layout_width="match_parent"
         android:layout_height="39dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="392dp"
-        app:layout_constraintBottom_toTopOf="@+id/create"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="25dp"
+        android:layout_below="@id/diff_label"/>
 
     <TextView
         android:id="@+id/skill_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="28dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="32dp"
+        android:layout_below="@id/diff_selector"
         android:text="Skill Points"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toTopOf="@+id/pilot"
-        app:layout_constraintEnd_toEndOf="@+id/pilot"
-        app:layout_constraintStart_toEndOf="@+id/pilot"
-        app:layout_constraintTop_toBottomOf="@+id/char_editor" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
     <EditText
         android:id="@+id/pilot"
         android:layout_width="47dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginBottom="33dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/fighter"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/skill_label" />
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/skill_label"
+        android:ems="5"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/engineer"
         android:layout_width="45dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginBottom="42dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/trader_label"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fighter" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/pilot"
+        android:ems="5"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/fighter"
         android:layout_width="45dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginBottom="32dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/engineer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pilot" />
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/engineer"
+        android:ems="5"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/trader"
-        android:layout_width="46dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginBottom="40dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/create"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="45dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fighter"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="10dp"
+        android:ems="5"
+        android:inputType="number" />
 
     <TextView
         android:id="@+id/pilot_label"
         android:layout_width="46dp"
         android:layout_height="27dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginBottom="19dp"
-        android:text="Pilot"
-        app:layout_constraintBottom_toBottomOf="@+id/pilot"
-        app:layout_constraintStart_toEndOf="@+id/pilot"
-        app:layout_constraintTop_toBottomOf="@+id/skill_label" />
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="32dp"
+        android:layout_below="@id/skill_label"
+        android:layout_toRightOf="@id/pilot"
+        android:text="Pilot" />
 
     <TextView
         android:id="@+id/engineer_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:text="Engineer"
-        app:layout_constraintStart_toEndOf="@+id/engineer"
-        app:layout_constraintTop_toTopOf="@+id/engineer" />
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="32dp"
+        android:layout_below="@id/pilot_label"
+        android:layout_toRightOf="@id/engineer"
+        android:text="Engineer" />
 
     <TextView
         android:id="@+id/fighter_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:text="Fighter"
-        app:layout_constraintStart_toEndOf="@+id/fighter"
-        app:layout_constraintTop_toTopOf="@+id/fighter" />
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="32dp"
+        android:layout_below="@id/engineer_label"
+        android:layout_toRightOf="@id/fighter"
+        android:text="Fighter" />
 
     <TextView
         android:id="@+id/trader_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginBottom="172dp"
-        android:text="Trader"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/trader"
-        app:layout_constraintTop_toBottomOf="@+id/engineer" />
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="32dp"
+        android:layout_below="@id/fighter_label"
+        android:layout_toRightOf="@id/trader"
+        android:text="Trader" />
 
     <Button
         android:id="@+id/create"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
-        android:text="Create Character"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginLeft="120dp"
+        android:onClick="onAddPressed"
+        android:text="Create Character" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
