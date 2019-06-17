@@ -1,5 +1,7 @@
 package com.example.guwap.model;
 
+import android.util.Log;
+
 import com.example.guwap.entity.Difficulty;
 
 public class Player implements IEntity {
@@ -20,6 +22,12 @@ public class Player implements IEntity {
         this.engineer = engineer;
         this.trader = trader;
         this.fighter = fighter;
+        Log.i("Information: ", "Player name: " + this.name
+                + "\n Difficulty: " + difficulty.toString()
+                + "\n pilot: " + this.pilot
+                + "\n engineer: " + this.engineer
+                + "\n fighter: " + this.fighter
+                + "\n trader: " + this.trader   );
     }
 
 
@@ -38,4 +46,5 @@ public class Player implements IEntity {
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
     }
+
 }

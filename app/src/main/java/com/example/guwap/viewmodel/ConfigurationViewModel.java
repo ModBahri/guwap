@@ -6,8 +6,7 @@ import com.example.guwap.entity.Interactor;
 import com.example.guwap.model.Player;
 
 public class ConfigurationViewModel extends ViewModel {
-    private Interactor interactor;
-
+    private Interactor interactor = new Interactor();
     public void addPlayer(Player player) { interactor.addPlayer(player); }
 
 }
