@@ -100,10 +100,6 @@ public class ConfigurationActivity extends AppCompatActivity {
         int tFighter = Integer.parseInt(fighter.getText().toString());
         int tTrader = Integer.parseInt(trader.getText().toString());
 
-        if (tPilot + tEngineer + tTrader + tFighter > 16) {
-            throw new Exception("Too many points");
-        }
-
 
         if(tPilot + tEngineer + tTrader + tFighter > 16) {
             Toast toast = Toast.makeText(context, "Points cannot total more than 16", duration);
