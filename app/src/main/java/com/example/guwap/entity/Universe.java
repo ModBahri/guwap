@@ -1,4 +1,4 @@
-package com.example.mapsdemo;
+package com.example.guwap.entity;
 
 import com.example.guwap.entity.Location;
 

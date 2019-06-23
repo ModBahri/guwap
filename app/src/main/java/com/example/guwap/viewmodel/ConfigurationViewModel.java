@@ -1,6 +1,6 @@
 package com.example.guwap.viewmodel;
 
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel;
 
 import com.example.guwap.entity.Interactor;
 import com.example.guwap.model.Player;

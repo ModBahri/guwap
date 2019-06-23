@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.guwap.R;
+import com.example.guwap.entity.Location;
+import com.example.guwap.entity.Universe;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -20,7 +22,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+        setContentView(R.layout.activity_mapcreation);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -47,7 +49,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
 
-        for (Locations.Location location: Locations.locationArrayList) {
+        for (Location location: Universe.locationArrayList) {
             Log.d("TAG", "WATCHME");
             Log.d("TAG!!", location.getName());
             LatLng marker = new LatLng(location.getLattitude(), location.getLongitude());
