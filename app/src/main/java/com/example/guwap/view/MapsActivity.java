@@ -1,9 +1,10 @@
-package com.example.mapsdemo;
+package com.example.guwap.view;
 
 import androidx.fragment.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.guwap.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;

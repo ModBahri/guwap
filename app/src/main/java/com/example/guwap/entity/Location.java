@@ -24,7 +24,7 @@ public class Location {
     }
 
     public Location(String name) {
-        this(Math.random()*(33.7493-33.7487)- 33.7493, Math.random()*(84.3877 - 84.3883) - 84.3877, name)
+        this(Math.random()*(33.7493-33.7487)- 33.7493, Math.random()*(84.3877 - 84.3883) - 84.3877, name);
     }
 
     public double getLattitude() {
