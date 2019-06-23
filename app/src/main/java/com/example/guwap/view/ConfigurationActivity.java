@@ -1,11 +1,13 @@
 package com.example.guwap.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,6 +22,7 @@ import com.example.guwap.viewmodel.ConfigurationViewModel;
 public class ConfigurationActivity extends AppCompatActivity {
     /**View model reference*/
     private ConfigurationViewModel viewModel;
+    private Button button;
 
     /** Widgets used in this model */
     private TextView nameField;
@@ -47,6 +50,14 @@ public class ConfigurationActivity extends AppCompatActivity {
         engineer = findViewById(R.id.engineer);
         trader = findViewById(R.id.trader);
         fighter = findViewById(R.id.fighter);
+        button = (Button) findViewById(R.id.create);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openUniverseCreated();
+            }
+        });
+
 
         /*
           Set up adapter to display the difficulty levels in the spinner
@@ -73,6 +84,15 @@ public class ConfigurationActivity extends AppCompatActivity {
         viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
 
 
+    }
+
+    public void openUniverseCreated() {
+        Intent intent = new Intent(this, UniverseCreated.class);
+        startActivity(intent);
+    }
+
+    public void sendMessage(View view) {
+        // Do something in response to button
     }
 
     /**
