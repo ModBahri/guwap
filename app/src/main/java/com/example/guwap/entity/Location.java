@@ -1,7 +1,4 @@
 package com.example.guwap.entity;
-import android.provider.Contacts;
-
-import java.util.Random;
 
 public class Location {
     private double lattitude;
@@ -59,4 +56,7 @@ public class Location {
         return resources;
     }
 
+    public static interface IEntity {
+
+    }
 }

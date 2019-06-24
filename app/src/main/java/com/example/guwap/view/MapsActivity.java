@@ -24,9 +24,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapcreation);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        //SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+               // .findFragmentById(R.id.map);
+       // mapFragment.getMapAsync(this);
     }
 
 
@@ -50,7 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         for (Location location: Universe.locationArrayList) {
-            Log.d(location.getName(), location.getPeopleType(), location.getResources());
+            Log.i("Location:", location.getName() + location.getPeopleType() + location.getResources());
             LatLng marker = new LatLng(location.getLattitude(), location.getLongitude());
             Marker marker1 = mMap.addMarker(new MarkerOptions().position(marker).title(location.getName()));
             marker1.setTag(marker1.hashCode());
