@@ -51,4 +51,12 @@ public class Location {
         return name;
     }
 
+    public PeopleType getPeopleType() {
+        return peopleType;
+    }
+
+    public Resources getResources() {
+        return resources;
+    }
+
 }
