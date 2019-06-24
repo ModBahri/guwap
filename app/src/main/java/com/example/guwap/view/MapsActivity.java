@@ -50,8 +50,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         for (Location location: Universe.locationArrayList) {
-            Log.d("TAG", "WATCHME");
-            Log.d("TAG!!", location.getName());
+            Log.d(location.getName(), location.getPeopleType(), location.getResources());
             LatLng marker = new LatLng(location.getLattitude(), location.getLongitude());
             Marker marker1 = mMap.addMarker(new MarkerOptions().position(marker).title(location.getName()));
             marker1.setTag(marker1.hashCode());
