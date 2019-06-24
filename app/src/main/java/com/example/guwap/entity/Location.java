@@ -1,9 +1,15 @@
 package com.example.guwap.entity;
+import android.provider.Contacts;
+
+import java.util.Random;
 
 public class Location {
     private double lattitude;
     private double longitude;
     private String name;
+    private PeopleType peopleType;
+    private Resources resources;
+
 
     public void setLattitude(double lattitude) {
         this.lattitude = lattitude;
@@ -17,14 +23,20 @@ public class Location {
         this.name = name;
     }
 
+    public Location(String name) {
+        this(Math.random()*(33.7493-33.7487)- 33.7493, Math.random()*(84.3877 - 84.3883) - 84.3877, name, PeopleType.randPeopleType(), Resources.randResources());
+    }
+
     public Location(double lattitude, double longitude, String name) {
+        this(lattitude, longitude, name, PeopleType.randPeopleType(), Resources.randResources());
+    }
+
+    public Location(double lattitude, double longitude, String name, PeopleType peopleType, Resources resources) {
         this.lattitude = lattitude;
         this.longitude = longitude;
         this.name = name;
-    }
-
-    public Location(String name) {
-        this(Math.random()*(33.7493-33.7487)- 33.7493, Math.random()*(84.3877 - 84.3883) - 84.3877, name);
+        this.peopleType = peopleType;
+        this.resources = resources;
     }
 
     public double getLattitude() {
@@ -38,4 +50,5 @@ public class Location {
     public String getName() {
         return name;
     }
+
 }
