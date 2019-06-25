@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.guwap.R;
 import com.example.guwap.entity.Difficulty;
+import com.example.guwap.entity.Player;
 import com.example.guwap.entity.PeopleType;
 import com.example.guwap.viewmodel.ConfigurationViewModel;
 
@@ -34,7 +35,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
 
     /** Player data */
-    private PeopleType.Player player;
+    private Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         /*
           Add default text to buttons
          */
-        player = new PeopleType.Player();
+        player = new Player();
         nameField.setText(player.getName());
         difficulty.setSelection(2);
         pilot.setText("0");
@@ -131,7 +132,7 @@ public class ConfigurationActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(context, "Name cannot be blank", duration);
             toast.show();
         } else {
-            player = new PeopleType.Player(tName, tDifficulty, tPilot, tEngineer, tFighter, tTrader);
+            player = new Player(tName, tDifficulty, tPilot, tEngineer, tFighter, tTrader);
 
             viewModel.addPlayer(player);
 

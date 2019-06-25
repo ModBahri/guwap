@@ -3,19 +3,18 @@ package com.example.guwap.entity;
 import java.util.Random;
 
 public enum Resources {
-    NORESOURCES (0),
-    STEERS (1),
-    HORSES (2),
-    GOLD (3),
-    FOREST (4),
-    GRASSLAND (5),
-    DESERT (6),
-    OASIS (7),
-    GHOSTTOWN (8),
-    PEYOTE (9),
-    WEIRDMUSHROOMS (10),
-    IRON (11),
-    SILVER (12);
+    NORESOURCES (0), //no resources
+    GRASSLAND (1), //steers, horses
+    DESERT (2), //peyote,
+    FOREST (3), //wood, horses
+    OASIS (4), //whiskey
+    CAVE (5), //weird mushrooms, coal, gold
+    MOUNTAINS (6), //coal, gold
+    ABANDONEDTRAINCAR (7), //guns, whiskey, snake oil
+    CITY (8), //tobacco, whiskey, snake oil, guns
+    TRIBAL (9), //tobacco, peyote
+    RICHFAUNA (10), //steers,
+    HERBS (11); //snake oil, peyote
 
     private final int code;
 

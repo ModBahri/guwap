@@ -1,21 +1,21 @@
 package com.example.guwap.model;
 
 import com.example.guwap.entity.Location;
-import com.example.guwap.entity.PeopleType;
+import com.example.guwap.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Interactor {
-    private List<PeopleType.Player> allPlayers;
+    private List<Player> allPlayers;
 
     public Interactor() {
-        allPlayers = new ArrayList<PeopleType.Player>();
+        allPlayers = new ArrayList<Player>();
     }
 
-    public List<PeopleType.Player> getAllPlayers() { return allPlayers; }
+    public List<Player> getAllPlayers() { return allPlayers; }
 
-    public void addPlayer(PeopleType.Player player) {
+    public void addPlayer(Player player) {
         allPlayers.add(player);
     }
 
