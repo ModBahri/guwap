@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Interactor {
-    private List<PeopleType.Player> allPlayers;
+    private List<PeopleType> allPlayers;
 
     public Interactor() {
-        allPlayers = new ArrayList<PeopleType.Player>();
+        allPlayers = new ArrayList<PeopleType>();
     }
 
-    public List<PeopleType.Player> getAllPlayers() { return allPlayers; }
+    public List<PeopleType > getAllPlayers() { return allPlayers; }
 
-    public void addPlayer(PeopleType.Player player) {
+    public void addPlayer(PeopleType player) {
         allPlayers.add(player);
     }
 

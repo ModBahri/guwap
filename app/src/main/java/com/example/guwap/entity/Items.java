@@ -7,7 +7,7 @@ public class Items {
 
         items = new Item[MarketPlace.getNumberOfTypesOfItems()];
 
-        Item exampleItem = new Item(Difficulty.NORMAL, Resources.NORESOURCES, PeopleType.TROGOLODYTE, TypeOfItems.STEERS);
+        Item exampleItem = new Item(Difficulty.NORMAL, Resources.NORESOURCES, PeopleType.TROGOLODYTE, TypeOfItem.STEERS);
 
         for (int i = 0; i < 11; i++) {
             items[i] = new Item(player.getDifficulty(), region.getResources(),

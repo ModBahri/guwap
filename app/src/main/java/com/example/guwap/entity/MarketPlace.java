@@ -1,9 +1,9 @@
 package com.example.guwap.entity;
 
 public class MarketPlace {
-    private TypeOfItems itemType;
+    private TypeOfItem itemType;
 
-    public MarketPlace(TypeOfItems itemType) {
+    public MarketPlace(TypeOfItem itemType) {
         this.itemType = itemType;
     }
 
@@ -11,7 +11,7 @@ public class MarketPlace {
         return 12;
     }
 
-    public TypeOfItems getItemType() {
+    public TypeOfItem getItemType() {
         return itemType;
     }
 }

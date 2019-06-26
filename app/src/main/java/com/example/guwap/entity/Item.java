@@ -20,5 +20,11 @@ public class Item {
             this.quantity = (int) (Math.random() * ((100 - 0) + 1)) + 0;
         }
         this.name = typeOfItem.getName();
+        if ((pt == PeopleType.TROGOLODYTE || pt == PeopleType.BANDIT)
+                && (typeOfItem.getName() == "guns" || typeOfItem.getName() == "snakeoil")) {
+            this.quantity = this.quantity * 2;
+        } /*else if (pt == PeopleType.BANDIT) {
+            this.quantity
+        }*/
     }
 }
