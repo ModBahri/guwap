@@ -33,9 +33,7 @@ public class Player implements Location.IEntity {
         return name;
     }
 
-    public Difficulty getDifficulty() {
-        return difficulty;
-    }
+    public Difficulty getDifficulty() { return difficulty; }
 
     public void setName(String name) {
         this.name = name;

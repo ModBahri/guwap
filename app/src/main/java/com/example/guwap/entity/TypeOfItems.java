@@ -18,7 +18,7 @@ public enum TypeOfItems {
     private String nameOfType;
     private TypeOfItems(String name, int type) {
         this.nameOfType = name;
-        this.numberOfTypesOfItems = type;
+        this.numberOfTypesOfItems = 12;
     }
     public int getNumberOfTypesOfItems(){
         return numberOfTypesOfItems;
