@@ -1,5 +1,6 @@
 package com.example.guwap.entity;
 
+//Everything in this class was made by jorge.
 public enum TypeOfItem {
     STEERS ("steers", 100),
     HORSES ("horses",  200),

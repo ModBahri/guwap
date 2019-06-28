@@ -1,5 +1,6 @@
 package com.example.guwap.entity;
 
+//Everything in this class was made by jorge.
 public class MarketPlace {
     private Region region;
     private Item[] itemsForSale;

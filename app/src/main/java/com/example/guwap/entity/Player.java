@@ -2,7 +2,7 @@ package com.example.guwap.entity;
 
 import android.util.Log;
 
-public class Player implements Location.IEntity {
+public class Player implements Region.IEntity {
     private String name;
     private Difficulty difficulty;
     private final int INITIAL_SKILL_POINTS = 16;

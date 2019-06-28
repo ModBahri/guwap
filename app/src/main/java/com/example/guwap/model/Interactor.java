@@ -1,6 +1,6 @@
 package com.example.guwap.model;
 
-import com.example.guwap.entity.Location;
+import com.example.guwap.entity.Region;
 import com.example.guwap.entity.PeopleType;
 
 import java.util.ArrayList;
@@ -19,6 +19,6 @@ public class Interactor {
         allPlayers.add(player);
     }
 
-    public static class NonPlayer implements Location.IEntity {
+    public static class NonPlayer implements Region.IEntity {
     }
 }
