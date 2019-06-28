@@ -6,6 +6,23 @@ public class Item {
     private String name;
     private int quantity;
 
+    public Item(Difficulty difficulty, TypeOfItem typeOfItem) {
+        if (difficulty == Difficulty.BEGINNER) {
+            this.price = typeOfItem.getPrice() / 2.0;
+            this.quantity = 0;
+        } else if (difficulty == Difficulty.NORMAL) {
+            this.price = typeOfItem.getPrice();
+            this.quantity = 0;
+        } else if (difficulty == Difficulty.HARD) {
+            this.price = typeOfItem.getPrice() * 2.0;
+            this.quantity = 0;
+        } else if (difficulty == Difficulty.IMPOSSIBLE) {
+            this.price = typeOfItem.getPrice() * 4.0;
+            this.quantity = 0;
+        }
+        this.name = typeOfItem.getName();
+    }
+
     public Item(Difficulty d, Resources r, PeopleType pt, TypeOfItem typeOfItem) {
         if (d == Difficulty.BEGINNER) {
             this.price = typeOfItem.getPrice() / 2.0;

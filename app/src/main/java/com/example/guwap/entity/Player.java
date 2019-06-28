@@ -8,6 +8,7 @@ public class Player implements Region.IEntity {
     private final int INITIAL_SKILL_POINTS = 16;
     private final int INITIAL_CREDITS = 1000;
     private int pilot, fighter, engineer, trader;
+    private Item[] playerInventory;
 
     public Player() {
         this("Name", Difficulty.NORMAL, 0, 0, 0, 0);
@@ -26,6 +27,7 @@ public class Player implements Region.IEntity {
                 + "\n engineer: " + this.engineer
                 + "\n fighter: " + this.fighter
                 + "\n trader: " + this.trader   );
+        this.playerInventory = new Items(difficulty).getItems();
     }
 
 
@@ -46,4 +48,11 @@ public class Player implements Region.IEntity {
 
     public String getPeopleType() { return this.difficulty.toString();}
 
+    public Item[] getPlayerInventory() {
+        return playerInventory;
+    }
+
+    public void setPlayerInventory(Item[] playerInventory) {
+        this.playerInventory = playerInventory;
+    }
 }
