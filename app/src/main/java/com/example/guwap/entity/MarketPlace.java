@@ -1,17 +1,12 @@
 package com.example.guwap.entity;
 
 public class MarketPlace {
-    private TypeOfItem itemType;
+    private Region region;
+    private Item[] itemsForSale;
 
-    public MarketPlace(TypeOfItem itemType) {
-        this.itemType = itemType;
-    }
-
-    public static int getNumberOfTypesOfItems() {
-        return 12;
-    }
-
-    public TypeOfItem getItemType() {
-        return itemType;
+    public void MarketPlace(Player player, Region region) {
+        Item[] items = new Items(player, region).getItems();
+        this.itemsForSale = items;
+        this.region = region;
     }
 }

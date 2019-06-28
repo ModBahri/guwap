@@ -1,6 +1,6 @@
 package com.example.guwap.entity;
 
-public class Location {
+public class    Location {
     private double lattitude;
     private double longitude;
     private String name;

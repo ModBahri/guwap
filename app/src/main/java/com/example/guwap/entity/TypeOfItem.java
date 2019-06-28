@@ -14,17 +14,13 @@ public enum TypeOfItem {
     GUNS ("guns", 100),
     WEIRDMUSHROOMS ("weirdmushrooms", 87);
 
-    private int numberOfTypesOfItems;
     private String name;
     private double price;
     private TypeOfItem(String name, double price) {
         this.name = name;
-        this.numberOfTypesOfItems = 12;
         this.price = price;
     }
-    public int getNumberOfTypesOfItems(){
-        return numberOfTypesOfItems;
-    }
+
     public String getName() {
         return name;
     }
