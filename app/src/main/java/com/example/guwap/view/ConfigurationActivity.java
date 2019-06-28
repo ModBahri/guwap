@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.guwap.R;
 import com.example.guwap.entity.Difficulty;
 import com.example.guwap.entity.PeopleType;
+import com.example.guwap.entity.PeopleType;
 import com.example.guwap.viewmodel.ConfigurationViewModel;
 
 public class ConfigurationActivity extends AppCompatActivity {
@@ -54,7 +55,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openUniverseCreated();
+                openMainScreen();
             }
         });
 
@@ -86,8 +87,8 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     }
 
-    public void openUniverseCreated() {
-        Intent intent = new Intent(this, UniverseCreated.class);
+    public void openMainScreen() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
