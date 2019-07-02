@@ -1,7 +1,7 @@
 package com.example.guwap.entity;
 
 //Everything in this class was made by jorge.
-public class Item {
+public class    Item {
     private double price;
     private String name;
     private int quantity;
