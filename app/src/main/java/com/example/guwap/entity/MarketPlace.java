@@ -10,4 +10,20 @@ public class MarketPlace {
         this.marketPlaceItems = items;
         this.region = region;
     }
+
+    public Region getRegion() {
+        return region;
+    }
+
+    public void setRegion(Region region) {
+        this.region = region;
+    }
+
+    public Item[] getMarketPlaceItems() {
+        return marketPlaceItems;
+    }
+
+    public void setMarketPlaceItems(Item[] marketPlaceItems) {
+        this.marketPlaceItems = marketPlaceItems;
+    }
 }

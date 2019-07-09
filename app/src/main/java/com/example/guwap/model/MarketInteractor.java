@@ -1,23 +1,27 @@
 package com.example.guwap.model;
-import com.example.guwap.entity.Cargo;
 import com.example.guwap.entity.Item;
-
-import java.util.List;
+import com.example.guwap.entity.MarketPlace;
+import com.example.guwap.entity.Player;
 
 public class MarketInteractor {
+    private Item[] myCargo;
+    private Item[] marketPlaceItems;
+    private
 
+    public void Interaction(MarketPlace mp, Player player) {
+        this.myCargo = player.getPlayerWagon().getCargo();
+        this.marketPlaceItems = mp.getMarketPlaceItems();
+    }
 
-    private Item[] myCargo = player.getWagon().getCargo();
-
-    public void buyItem(int item, int quantity) {
+    public void buyItem(int type, int quantity) {
         //player interactions:
         //playerInventory needs to be affected
         //player credits need to be affect
-        if (myCargo[item].getQuantity() > 0) {
-            myCargo[item].setQuantity(myCargo[item].getQuantity() + quantity);
+        if (myCargo[type].getQuantity() > 0) {
+            myCargo[type].setQuantity(myCargo[type].getQuantity() + quantity);
+
         } else {
-            item.setQuantity(quantity);
-            myCargo.add(item);
+
         }
 
     }
