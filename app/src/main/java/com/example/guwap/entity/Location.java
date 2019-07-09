@@ -36,9 +36,7 @@ public class Location {
         this.resources = resources;
     }
 
-    public double getLattitude() {
-        return lattitude;
-    }
+    public double getLattitude() { return lattitude; }
 
     public double getLongitude() {
         return longitude;
@@ -56,7 +54,4 @@ public class Location {
         return resources;
     }
 
-    public static interface IEntity {
-
-    }
 }

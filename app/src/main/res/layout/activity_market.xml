@@ -101,7 +101,7 @@
         android:layout_marginEnd="-127dp"
         android:layout_marginRight="-127dp"
         android:layout_marginBottom="4dp"
-        android:background="@drawable/snakeOil" />
+        android:background="@drawable/snakeoil" />
 
     <ImageButton
         android:id="@+id/imageButtonSteeer"
