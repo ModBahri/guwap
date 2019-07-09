@@ -7,7 +7,7 @@ import java.util.List;
 public class MarketInteractor {
 
 
-    private Item[] myCargo = player.getWagon();
+    private Item[] myCargo = player.getWagon().getCargo();
 
     public void buyItem(int item, int quantity) {
         //player interactions:
