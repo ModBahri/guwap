@@ -19,14 +19,14 @@ public class Model {
 
     private void registerInteractors() {
         interactorMap.put("Player", new PlayerInteractor(myRepository));
-        interactorMap.put("Location", new LocationInteractor(myRepository));
+        interactorMap.put("Region", new RegionInteractor(myRepository));
     }
 
     public PlayerInteractor getPlayerInteractor() {
         return (PlayerInteractor) interactorMap.get("Player");
     }
 
-    public LocationInteractor getLocationInteractor() {
-        return (LocationInteractor) interactorMap.get("Location");
+    public RegionInteractor getRegionInteractor() {
+        return (RegionInteractor) interactorMap.get("Region");
     }
 }

@@ -1,17 +1,17 @@
 package com.example.guwap.model;
 
-import com.example.guwap.entity.Location;
+import com.example.guwap.entity.Region;
 
 import java.util.List;
 
-public class LocationInteractor extends Interactor{
-    public LocationInteractor(Repository repo) { super (repo);}
+public class RegionInteractor extends Interactor{
+    public RegionInteractor(Repository repo) { super (repo);}
 
-    public List<Location> getAllLocations() { return getRepository().getAllLocations(); }
+    public List<Region> getAllRegions() { return getRepository().getAllRegions(); }
 
-    public void addLocation (Location p) { getRepository().addLocation(p); }
+    public void addRegion (Region p) { getRepository().addRegion(p); }
 
-    public double distanceBetween (Location current, Location destination) {
+    public double distanceBetween (Region current, Region destination) {
         double curlat = current.getLattitude();
         double curlong = current.getLongitude();
         double destlat = destination.getLattitude();

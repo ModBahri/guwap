@@ -1,6 +1,6 @@
 package com.example.guwap.model;
 
-import com.example.guwap.entity.Location;
+import com.example.guwap.entity.Region;
 import com.example.guwap.entity.Player;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public class PlayerInteractor extends Interactor {
         getRepository().deletePlayer(p);
     }
 
-    public void updateLocation(Player player, Location location) {
+    public void updateRegion(Player player, Region region) {
         //getRepository.
     }
 

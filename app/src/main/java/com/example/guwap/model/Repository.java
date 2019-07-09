@@ -1,6 +1,6 @@
 package com.example.guwap.model;
 
-import com.example.guwap.entity.Location;
+import com.example.guwap.entity.Region;
 import com.example.guwap.entity.Player;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ class Repository {
     private List<Player> allPlayers;
 
     /** all the courses known in the application */
-    private List<Location> allLocations;
+    private List<Region> allRegions;
 
     /** current player */
     private Player current;
@@ -40,7 +40,7 @@ class Repository {
      */
     public Repository() {
         allPlayers = new ArrayList<>();
-        allLocations = new ArrayList<>();
+        allRegions = new ArrayList<>();
 
     }
 
@@ -56,7 +56,7 @@ class Repository {
      * get all the courses in the system
      * @return list of all the courses
      */
-    public List<Location>  getAllLocations() { return allLocations; }
+    public List<Region>  getAllRegions() { return allRegions; }
 
 
     /**
@@ -69,13 +69,13 @@ class Repository {
         this.current = player;
     }
 
-    /** add a new location to the system
+    /** add a new region to the system
      *
-     * @param location the location to add
+     * @param region the region to add
      */
-    public void addLocation(Location location) {
+    public void addRegion(Region region) {
         //student.setId(Repository.getNextUniqueID());
-        allLocations.add(location);
+        allRegions.add(region);
     }
 
     /**
@@ -105,10 +105,10 @@ class Repository {
     /**
      * Updates the values stored in a player
      * @param player the student to update
-     * @param location location to set
+     * @param region region to set
      */
-    public void updateLocation(Player player, Location location) {
-        player.setLocation(location);
+    public void updateRegion(Player player, Region region) {
+        player.setRegion(region);
     }
 
     public Player getCurrent() {

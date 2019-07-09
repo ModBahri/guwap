@@ -5,7 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
-import com.example.guwap.entity.Location;
+import com.example.guwap.entity.Region;
 import com.example.guwap.entity.Player;
 import com.example.guwap.model.Model;
 import com.example.guwap.model.PlayerInteractor;
@@ -33,12 +33,12 @@ public class PlayerViewModel extends AndroidViewModel {
         players = model.getAllPlayers();
     }
 
-    public void updateLocation(Player player, Location location) {
-        model.updateLocation(player, location);
+    public void updateRegion(Player player, Region region) {
+        model.updateRegion(player, region);
     }
 
-    public Location getLocation(Player player) {
-        return model.getCurrentPlayer().getLocation();
+    public Region getRegion(Player player) {
+        return model.getCurrentPlayer().getRegion();
     }
 
     public Player getPlayer() {

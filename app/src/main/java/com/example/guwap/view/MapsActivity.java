@@ -10,8 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.guwap.R;
-import com.example.guwap.entity.Location;
 import com.example.guwap.entity.Player;
+import com.example.guwap.entity.Region;
 import com.example.guwap.entity.Universe;
 import com.example.guwap.viewmodel.PlayerViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -57,22 +57,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng curloc = new LatLng(viewModel.getLocation(player).getLattitude(), viewModel.getLocation(player).getLongitude());
+        LatLng curloc = new LatLng(viewModel.getRegion(player).getLattitude(), viewModel.getRegion(player).getLongitude());
         mMap.moveCamera(CameraUpdateFactory.newLatLng(curloc));
 
         currLoc = findViewById(R.id.curr_loc);
         selecLoc = findViewById(R.id.selec_loc);
-        currLoc.setText(viewModel.getLocation(player).getName());
+        currLoc.setText(viewModel.getRegion(player).getName());
 
 
-        for (Location location: Universe.locationArrayList) {
-            String name = location.getName();
-            String pplType = location.getPeopleType().toString();
-            String resources = location.getResources().toString();
-            double lat = location.getLattitude();
-            double longe = location.getLongitude();
+        for (Region region: Universe.regionArrayList) {
+            String name = region.getName();
+            String pplType = region.getPeopleType().toString();
+            String resources = region.getResources().toString();
+            double lat = region.getLattitude();
+            double longe = region.getLongitude();
 
-            Log.i("Location:", name + pplType + resources);
+            Log.i("Region:", name + pplType + resources);
 
             LatLng markerPos = new LatLng(lat, longe);
             Marker marker = mMap.addMarker(new MarkerOptions().position(markerPos).title(name));
@@ -95,10 +95,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     public void onTravelClick() {
         if (selectedMarker != null) {
-            for (Location location: Universe.locationArrayList) {
-                String name = location.getName();
+            for (Region region: Universe.regionArrayList) {
+                String name = region.getName();
                 if(selectedMarker.getTitle().equals(name)) {
-                    player.setLocation(location);
+                    player.setRegion(region);
                     Intent intent = new Intent(this, MapsActivity.class);
                     startActivity(intent);
                 }

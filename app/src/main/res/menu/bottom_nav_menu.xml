@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/navigation_Map"
-        android:icon="@drawable/ic_add_location_black_24dp"
+        android:icon="@drawable/ic_add_region_black_24dp"
         android:title="Map" />
 
     <item

@@ -5,7 +5,7 @@ import android.util.Log;
 
 import java.util.Random;
 
-import static com.example.guwap.entity.Universe.locationArrayList;
+import static com.example.guwap.entity.Universe.regionArrayList;
 
 public enum PeopleType {
     TROGOLODYTE (0),

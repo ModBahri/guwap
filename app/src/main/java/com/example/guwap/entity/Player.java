@@ -4,15 +4,17 @@ import android.util.Log;
 
 import java.util.Random;
 
-import static com.example.guwap.entity.Universe.locationArrayList;
+import static com.example.guwap.entity.Universe.regionArrayList;
 
 public class Player{
     private String name;
     private Difficulty difficulty;
     private final int INITIAL_SKILL_POINTS = 16;
     private final int INITIAL_CREDITS = 1000;
-    private int pilot, fighter, engineer, trader;
-    private Location location;
+    private int pilot, fighter, engineer, trader, credits;
+    private Region region;
+    private Wagon playerWagon;
+
 
     public Player() {
         this("Name", Difficulty.NORMAL, 0, 0, 0, 0);
@@ -26,13 +28,17 @@ public class Player{
         this.trader = trader;
         this.fighter = fighter;
         Random random = new Random();
-        this.location = locationArrayList.get(random.nextInt(13));
+        this.region = regionArrayList.get(random.nextInt(13));
+        this.credits = 1000;
         Log.i("Information: ", "Player name: " + this.name
                 + "\n Difficulty: " + difficulty.toString()
                 + "\n pilot: " + this.pilot
                 + "\n engineer: " + this.engineer
                 + "\n fighter: " + this.fighter
                 + "\n trader: " + this.trader   );
+
+        this.playerWagon = new Wagon(difficulty);
+
     }
 
 
@@ -44,18 +50,28 @@ public class Player{
         return difficulty;
     }
 
+
     public void setName(String name) {
         this.name = name;
     }
+
 
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
     }
 
-    public void setLocation(Location location) { this.location = location;}
+    public void setLocation(Region region) { this.region = region;}
 
     public String getPeopleType() { return this.difficulty.toString();}
 
-    public Location getLocation() { return this.location; }
+    public Wagon getPlayerWagon() {
+        return playerWagon;
+    }
+
+    public void setPlayerWagon(Wagon playerWagon) {
+        this.playerWagon = playerWagon;
+    }
+
+    public Region getLocation() { return this.region; }
 
 }
