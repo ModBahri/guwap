@@ -60,7 +60,7 @@ public class Player{
         this.difficulty = difficulty;
     }
 
-    public void setLocation(Region region) { this.region = region;}
+    public void setRegion(Region region) { this.region = region;}
 
     public String getPeopleType() { return this.difficulty.toString();}
 
