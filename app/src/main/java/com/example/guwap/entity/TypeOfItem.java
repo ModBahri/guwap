@@ -16,9 +16,9 @@ public enum TypeOfItem {
     WEIRDMUSHROOMS ("weirdmushrooms", 87,11);
 
     private String name;
-    private double price;
+    private int price;
     private int type;
-    private TypeOfItem(String name, double price, int type) {
+    private TypeOfItem(String name, int price, int type) {
         this.name = name;
         this.price = price;
         this.type = type;
@@ -27,5 +27,5 @@ public enum TypeOfItem {
     public String getName() {
         return name;
     }
-    public double getPrice() { return price; }
+    public int getPrice() { return price; }
 }

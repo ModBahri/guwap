@@ -10,8 +10,8 @@ public class Player{
     private String name;
     private Difficulty difficulty;
     private final int INITIAL_SKILL_POINTS = 16;
-    private final int INITIAL_CREDITS = 1000;
-    private int pilot, fighter, engineer, trader, credits;
+    private int credits;
+    private int pilot, fighter, engineer, trader;
     private Region region;
     private Wagon playerWagon;
 
@@ -74,4 +74,11 @@ public class Player{
 
     public Region getLocation() { return this.region; }
 
+    public int getCredits() {
+        return this.credits;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
 }

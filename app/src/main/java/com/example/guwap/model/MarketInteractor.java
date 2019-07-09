@@ -6,20 +6,23 @@ import com.example.guwap.entity.Player;
 public class MarketInteractor {
     private Item[] myCargo;
     private Item[] marketPlaceItems;
-    private
+    private int myCredits;
 
     public void Interaction(MarketPlace mp, Player player) {
         this.myCargo = player.getPlayerWagon().getCargo();
         this.marketPlaceItems = mp.getMarketPlaceItems();
+        this.myCredits = player.getCredits();
     }
 
     public void buyItem(int type, int quantity) {
         //player interactions:
         //playerInventory needs to be affected
         //player credits need to be affect
-        if (myCargo[type].getQuantity() > 0) {
+        if (myCredits > marketPlaceItems[type].getQuantity() * marketPlaceItems[type].getPrice()
+                && quantity >= marketPlaceItems[type].getQuantity()) {
             myCargo[type].setQuantity(myCargo[type].getQuantity() + quantity);
-
+            marketPlaceItems[type] //need to affect the marketplaces quantity
+            myCredits = myCredits - myCargo[type].getPrice() * quantity;
         } else {
 
         }
