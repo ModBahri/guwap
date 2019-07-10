@@ -18,24 +18,28 @@ public class MarketInteractor {
         //player interactions:
         //playerInventory needs to be affected
         //player credits need to be affect
-        if (myCredits > marketPlaceItems[type].getQuantity() * marketPlaceItems[type].getPrice()
+        if (myCredits > quantity * marketPlaceItems[type].getPrice()
                 && quantity >= marketPlaceItems[type].getQuantity()) {
             myCargo[type].setQuantity(myCargo[type].getQuantity() + quantity);
-            marketPlaceItems[type] //need to affect the marketplaces quantity
+            marketPlaceItems[type].setQuantity(marketPlaceItems[type].getQuantity() - quantity);
             myCredits = myCredits - myCargo[type].getPrice() * quantity;
-        } else {
-
-        }
+        } /*else {
+            deal with case where the player tries to buy more than the marketplace has in stock
+        }*/
 
     }
 
-    public void sellItem(Item item, int Quantity) {
+    public void sellItem(int type, int quantity) {
         //player interactions:
         //playerInventory needs to be affected
         //player credits need to be affect
-        myCargo.getItem(item).setQuantity(item.getQuantity - Quantity);
-        if (myCargo.getItem(item).getQuantity() == 0);
-            myCargo.remove(item);
+        if (quantity >= myCargo[type].getQuantity()) {
+            myCargo[type].setQuantity(myCargo[type].getQuantity() - quantity);
+            myCredits = myCredits + myCargo[type].getPrice() * quantity;
+        } /*else {
+            deal with the case where the person is trying to sell more than they have in their cargo
+        }*/
+
 
 
     }
