@@ -14,28 +14,28 @@ public class MarketInteractor {
         this.myCredits = player.getCredits();
     }
 
-    public void buyItem(int type, int quantity) {
+    public void buyItem(MarketPlace mp, Player player, int type, int quantity) {
         //player interactions:
         //playerInventory needs to be affected
         //player credits need to be affect
-        if (myCredits > quantity * marketPlaceItems[type].getPrice()
-                && quantity >= marketPlaceItems[type].getQuantity()) {
-            myCargo[type].setQuantity(myCargo[type].getQuantity() + quantity);
-            marketPlaceItems[type].setQuantity(marketPlaceItems[type].getQuantity() - quantity);
-            myCredits = myCredits - myCargo[type].getPrice() * quantity;
+        if (player.getCredits() > quantity * mp.getMarketPlaceItems()[type].getPrice()
+                && quantity >= mp.getMarketPlaceItems()[type].getQuantity()) {
+            player.getPlayerWagon().getCargo()[type].setQuantity(player.getPlayerWagon().getCargo()[type].getQuantity() + quantity);
+            mp.getMarketPlaceItems()[type].setQuantity(mp.getMarketPlaceItems()[type].getQuantity() - quantity);
+            player.setCredits(player.getCredits() - player.getPlayerWagon().getCargo()[type].getPrice() * quantity);
         } /*else {
             deal with case where the player tries to buy more than the marketplace has in stock
         }*/
 
     }
 
-    public void sellItem(int type, int quantity) {
+    public void sellItem(MarketPlace mp, Player player, int type, int quantity) {
         //player interactions:
         //playerInventory needs to be affected
         //player credits need to be affect
-        if (quantity >= myCargo[type].getQuantity()) {
-            myCargo[type].setQuantity(myCargo[type].getQuantity() - quantity);
-            myCredits = myCredits + myCargo[type].getPrice() * quantity;
+        if (quantity >= player.getPlayerWagon().getCargo()[type].getQuantity()) {
+            player.getPlayerWagon().getCargo()[type].setQuantity(player.getPlayerWagon().getCargo()[type].getQuantity() - quantity);
+            player.setCredits(player.getCredits() + player.getPlayerWagon().getCargo()[type].getPrice() * quantity);
         } /*else {
             deal with the case where the person is trying to sell more than they have in their cargo
         }*/
