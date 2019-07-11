@@ -1,8 +1,11 @@
 package com.example.guwap.entity;
 
+
 import android.util.Log;
 
 import java.util.Random;
+
+import static com.example.guwap.entity.Universe.regionArrayList;
 
 public enum PeopleType {
     TROGLODYTE (0),

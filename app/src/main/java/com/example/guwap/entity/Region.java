@@ -1,6 +1,6 @@
 package com.example.guwap.entity;
 
-public class Location {
+public class Region{
     private double lattitude;
     private double longitude;
     private String name;
@@ -20,15 +20,15 @@ public class Location {
         this.name = name;
     }
 
-    public Location(String name) {
+    public Region(String name) {
         this(Math.random()*(33.7493-33.7487)- 33.7493, Math.random()*(84.3877 - 84.3883) - 84.3877, name, PeopleType.randPeopleType(), Resources.randResources());
     }
 
-    public Location(double lattitude, double longitude, String name) {
+    public Region(double lattitude, double longitude, String name) {
         this(lattitude, longitude, name, PeopleType.randPeopleType(), Resources.randResources());
     }
 
-    public Location(double lattitude, double longitude, String name, PeopleType peopleType, Resources resources) {
+    public Region(double lattitude, double longitude, String name, PeopleType peopleType, Resources resources) {
         this.lattitude = lattitude;
         this.longitude = longitude;
         this.name = name;
@@ -36,9 +36,7 @@ public class Location {
         this.resources = resources;
     }
 
-    public double getLattitude() {
-        return lattitude;
-    }
+    public double getLattitude() { return lattitude; }
 
     public double getLongitude() {
         return longitude;
@@ -56,7 +54,4 @@ public class Location {
         return resources;
     }
 
-    public static interface IEntity {
-
-    }
 }
