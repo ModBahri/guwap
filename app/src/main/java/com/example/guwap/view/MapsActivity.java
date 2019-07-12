@@ -3,9 +3,12 @@ package com.example.guwap.view;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +21,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -59,6 +64,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         LatLng curloc = new LatLng(viewModel.getRegion(player).getLattitude(), viewModel.getRegion(player).getLongitude());
         mMap.moveCamera(CameraUpdateFactory.newLatLng(curloc));
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(5));
+        // Instantiates a new CircleOptions object and defines the center and radius
+        CircleOptions circleOptions = new CircleOptions()
+                .center(curloc)
+                .radius(player.getPlayerWagon().getDistance()); // In meters
+
+        // Get back the mutable Circle
+        Circle circle = mMap.addCircle(circleOptions);
 
         currLoc = findViewById(R.id.curr_loc);
         selecLoc = findViewById(R.id.selec_loc);
@@ -93,17 +106,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return true;
     }
 
-    public void onTravelClick() {
+    public void onTravelClick(View view) {
         if (selectedMarker != null) {
             for (Region region: Universe.regionArrayList) {
                 String name = region.getName();
                 if(selectedMarker.getTitle().equals(name)) {
-                    player.setRegion(region);
-                    Intent intent = new Intent(this, MapsActivity.class);
-                    startActivity(intent);
+                    if (player.getRegion().distanceTo(region) * 1200 > player.getPlayerWagon().getDistance()) {
+
+                        Context context = getApplicationContext();
+                        int duration = Toast.LENGTH_LONG;
+                        Toast toast = Toast.makeText(context, "Slow your roll partner! That location is mighty far. Buy some chicken wings for the journey!", duration);
+                        toast.show();
+
+                    } else {
+                        player.setRegion(region);
+                        currLoc.setText(region.getName());
+                        selecLoc.setText("");
+                        LatLng curloc = new LatLng(region.getLattitude(), region.getLongitude());
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(curloc));
+                    }
+
                 }
             }
         }
+    }
+
+    public void onClickTravel (MenuItem item) {
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+    }
+
+    public void onClickMarket (MenuItem item) {
+        Intent intent = new Intent(this, MarketActivity.class);
+        startActivity(intent);
     }
 }
 

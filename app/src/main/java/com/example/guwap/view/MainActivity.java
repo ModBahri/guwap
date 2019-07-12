@@ -1,5 +1,6 @@
 package com.example.guwap.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,16 +20,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
                 case R.id.navigation_market:
                     mTextMessage.setText("Market");
                     return true;
-                case R.id.navigation_Map:
+                case R.id.navigation_map:
                     mTextMessage.setText("Map");
                     return true;
-                case R.id.navigation_Player:
+                case R.id.navigation_player:
                     mTextMessage.setText("Player");
                     return true;
             }
@@ -43,6 +41,16 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    public void onClickTravel () {
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+    }
+
+    public void onClickMarket() {
+        Intent intent = new Intent(this, MarketActivity.class);
+        startActivity(intent);
     }
 
 }

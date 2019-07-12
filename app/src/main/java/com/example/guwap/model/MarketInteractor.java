@@ -40,8 +40,6 @@ public class MarketInteractor {
             deal with the case where the person is trying to sell more than they have in their cargo
         }*/
 
-
-
     }
 
 }

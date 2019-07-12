@@ -72,7 +72,7 @@ public class Player{
         this.playerWagon = playerWagon;
     }
 
-    public Region getLocation() { return this.region; }
+    public Region getRegion() { return this.region; }
 
     public int getCredits() {
         return this.credits;
