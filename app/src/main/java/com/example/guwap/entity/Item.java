@@ -27,6 +27,9 @@ public class Item {
         if (d == Difficulty.BEGINNER) {
             this.price = typeOfItem.getPrice() / 2;
             this.quantity = (int) (Math.random() * ((400 - 200) + 1)) + 200;
+        } else if (d == Difficulty.EASY) {
+            this.price = typeOfItem.getPrice() / 2;
+            this.quantity = (int) (Math.random() * ((300 - 150) + 1)) + 150;
         } else if (d == Difficulty.NORMAL) {
             this.price = typeOfItem.getPrice();
             this.quantity = (int) (Math.random() * ((300 - 100) + 1)) + 100;
