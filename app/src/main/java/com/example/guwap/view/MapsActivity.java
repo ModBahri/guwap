@@ -34,7 +34,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Player player;
     private TextView currLoc;
     private TextView selecLoc;
+    private TextView cWings;
     private Marker selectedMarker;
+    private Circle circle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         viewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
         player = viewModel.getPlayer();
+        cWings = findViewById(R.id.cWing);
         Log.i("Player name", player.getName());
     }
 
@@ -65,17 +68,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng curloc = new LatLng(viewModel.getRegion(player).getLattitude(), viewModel.getRegion(player).getLongitude());
         mMap.moveCamera(CameraUpdateFactory.newLatLng(curloc));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(5));
+        player.getPlayerWagon().setDistance(player.getPlayerWagon().getCargo()[4].getQuantity() * 100000000);
         // Instantiates a new CircleOptions object and defines the center and radius
         CircleOptions circleOptions = new CircleOptions()
                 .center(curloc)
                 .radius(player.getPlayerWagon().getDistance()); // In meters
 
         // Get back the mutable Circle
-        Circle circle = mMap.addCircle(circleOptions);
+        circle = mMap.addCircle(circleOptions);
 
         currLoc = findViewById(R.id.curr_loc);
         selecLoc = findViewById(R.id.selec_loc);
         currLoc.setText(viewModel.getRegion(player).getName());
+
+        cWings.setText(Integer.toString(player.getPlayerWagon().getCargo()[4].getQuantity()));
 
 
         for (Region region: Universe.regionArrayList) {
@@ -119,11 +125,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         toast.show();
 
                     } else {
+                        double dist = player.getRegion().distanceTo(region) * 1200;
+                        double chknwings = (dist) / 100000000;
+                        int iChkn = (int) chknwings;
+                        int curQuant = player.getPlayerWagon().getCargo()[4].getQuantity();
                         player.setRegion(region);
                         currLoc.setText(region.getName());
                         selecLoc.setText("");
                         LatLng curloc = new LatLng(region.getLattitude(), region.getLongitude());
                         mMap.moveCamera(CameraUpdateFactory.newLatLng(curloc));
+                        player.getPlayerWagon().getCargo()[4].setQuantity(curQuant - iChkn);
+                        player.getPlayerWagon().setDistance(player.getPlayerWagon().getDistance() - dist);
+
+                        circle.remove();
+
+                        CircleOptions circleOptions = new CircleOptions()
+                                .center(curloc)
+                                .radius(player.getPlayerWagon().getDistance()); // In meters
+
+                        // Get back the mutable Circle
+                        circle = mMap.addCircle(circleOptions);
+
+                        cWings.setText(Integer.toString(player.getPlayerWagon().getCargo()[4].getQuantity()));
                     }
 
                 }

@@ -9,6 +9,8 @@ public class Wagon {
         this.cargo = (new Items(difficulty)).getItems();
         this.maxDistance = 1000000000;
         this.distance = maxDistance;
+
+        this.cargo[4].setQuantity(10);
     }
 
     public Item[] getCargo() {
