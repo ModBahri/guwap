@@ -14,6 +14,9 @@ public class Player{
     private int pilot, fighter, engineer, trader;
     private Region region;
     private Wagon playerWagon;
+    private int damage;
+    private int health;
+    private int notoriety;
 
     public Player() {
         this("Name", Difficulty.NORMAL, 0, 0, 0, 0);
@@ -26,6 +29,24 @@ public class Player{
         this.engineer = engineer;
         this.trader = trader;
         this.fighter = fighter;
+        this.notoriety = 0;
+
+        if (difficulty == Difficulty.BEGINNER) {
+            damage = 20 + fighter;
+            health = 100;
+        } else if (difficulty == Difficulty.EASY) {
+            damage = 15 + fighter;
+            health = 90;
+        } else if (difficulty == Difficulty.NORMAL) {
+            damage = 10 + fighter;
+            health = 80;
+        } else if (difficulty == Difficulty.HARD) {
+            damage = 5 + fighter;
+            health = 70;
+        } else if (difficulty == Difficulty.IMPOSSIBLE) {
+            damage = 0 + fighter;
+            health = 60;
+        }
 
         Random random = new Random();
         this.region = regionArrayList.get(random.nextInt(13));
@@ -35,7 +56,8 @@ public class Player{
                 + "\n pilot: " + this.pilot
                 + "\n engineer: " + this.engineer
                 + "\n fighter: " + this.fighter
-                + "\n trader: " + this.trader   );
+                + "\n trader: " + this.trader
+                + "\n health: " + this.health);
 
         this.playerWagon = new Wagon(difficulty);
 
@@ -78,5 +100,37 @@ public class Player{
 
     public void setCredits(int credits) {
         this.credits = credits;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage() {
+        this.damage = damage;
+    }
+
+    public int getNotoriety() {
+        return notoriety;
+    }
+
+    public void setNotoriety(int notoriety) {
+        this.notoriety = notoriety;
+    }
+
+    public int getPilot() {
+        return pilot;
+    }
+
+    public int getFighter() {
+        return fighter;
     }
 }
