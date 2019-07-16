@@ -50,7 +50,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         engineer = findViewById(R.id.engineer);
         trader = findViewById(R.id.trader);
         fighter = findViewById(R.id.fighter);
-        button = (Button) findViewById(R.id.create);
+        button = findViewById(R.id.create);
       /*  button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,4 +145,6 @@ public class ConfigurationActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MarketActivity.class);
         startActivity(intent);
     }
+
+    //xmlns:app="http://schemas.android.com/apk/res-auto"
 }
