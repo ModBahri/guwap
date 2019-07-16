@@ -5,7 +5,7 @@ public class randomEncounterGenerator {
 	private double chance;
 	private int enemyEncounter;
 	private int sheriffEncounter;
-	private boolean
+	private boolean;
 
 	public randomEncounterGenerator(Difficulty d) {
 		switch (d) {
