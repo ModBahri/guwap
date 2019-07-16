@@ -129,10 +129,20 @@ public class ConfigurationActivity extends AppCompatActivity {
 
             viewModel.addPlayer(player);
 
-            Intent intent = new Intent(this, MapsActivity.class);
+            Intent intent = new Intent(this, MarketActivity.class);
             startActivity(intent);
         }
 
 
+    }
+
+    public void onClickTravel () {
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+    }
+
+    public void onClickMarket() {
+        Intent intent = new Intent(this, MarketActivity.class);
+        startActivity(intent);
     }
 }

@@ -16,9 +16,11 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD6_zYK1I6_SmIUvvXC8-xj5k4vDyucPp8" />
 
-        <activity android:name=".view.UniverseCreated" />
-        <activity android:name=".view.MainActivity" />
-        <activity android:name=".view.MapsActivity" />
+        <activity android:name=".view.UniverseCreated"></activity>
+        <activity android:name=".view.MainActivity"></activity>
+        <activity android:name=".view.MapsActivity"></activity>
+        <activity android:name=".view.MarketActivity"></activity>
+
         <activity
             android:name=".view.ConfigurationActivity"
             android:label="@string/app_name">

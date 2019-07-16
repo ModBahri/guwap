@@ -60,6 +60,6 @@
         android:layout_marginStart="-79dp"
         android:layout_marginLeft="-79dp"
         android:layout_marginBottom="-361dp"
-        app:srcCompat="@drawable/Sheriff" />
+        app:srcCompat="@drawable/sheriff" />
 
 </RelativeLayout>
