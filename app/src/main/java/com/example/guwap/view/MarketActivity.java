@@ -32,6 +32,10 @@ public class MarketActivity extends FragmentActivity {
     private int selectedItem;
     private MarketPlace marketPlace;
 
+    /**
+     * Method that runs when activity is started
+     * @param savedInstanceState current state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +62,10 @@ public class MarketActivity extends FragmentActivity {
         Log.i("Player name", player.getName());
     }
 
+    /**
+     * Buy button click handler
+     * @param view selected object
+     */
     public void onBuyClick (View view) {
         int quantint = Integer.parseInt(quantity.getText().toString());
         if(marketPlace.buyItem(player, selectedItem , quantint)){
@@ -74,6 +82,10 @@ public class MarketActivity extends FragmentActivity {
 
     }
 
+    /**
+     * Sell button click handler
+     * @param view selected object
+     */
     public void onSellClick (View view) {
         int quantint = Integer.parseInt(quantity.getText().toString());
         if(marketPlace.sellItem(player, selectedItem , quantint)){
@@ -90,18 +102,32 @@ public class MarketActivity extends FragmentActivity {
 
     }
 
+    /**
+     * Click handler for travel menu item
+     * @param item selected menu item
+     * @return successful?
+     */
     public boolean onClickTravel (MenuItem item) {
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
         return true;
     }
 
+    /**
+     * Click handler for Market menu item
+     * @param item selected menu item
+     * @return successful?
+     */
     public boolean onClickMarket(MenuItem item) {
         Intent intent = new Intent(this, MarketActivity.class);
         startActivity(intent);
         return true;
     }
 
+    /**
+     * Click handler for store item
+     * @param view selected store item
+     */
     public void onWhiskeyClick(View view) {
         Item item = marketplaceItems[3];
 
@@ -113,6 +139,10 @@ public class MarketActivity extends FragmentActivity {
         selectedItem = 3;
     }
 
+    /**
+     * Click handler for store item
+     * @param view selected store item
+     */
     public void onWoodClick(View view) {
         Item item = marketplaceItems[6];
 
@@ -124,6 +154,10 @@ public class MarketActivity extends FragmentActivity {
         selectedItem = 6;
     }
 
+    /**
+     * Click handler for store item
+     * @param view selected store item
+     */
     public void onChewClick(View view) {
         Item item = marketplaceItems[7];
 
@@ -135,6 +169,10 @@ public class MarketActivity extends FragmentActivity {
         selectedItem = 7;
     }
 
+    /**
+     * Click handler for store item
+     * @param view selected store item
+     */
     public void onMushroomClick(View view) {
         Item item = marketplaceItems[11];
 
@@ -146,6 +184,10 @@ public class MarketActivity extends FragmentActivity {
         selectedItem = 11;
     }
 
+    /**
+     * Click handler for store item
+     * @param view selected store item
+     */
     public void onPeyoteClick(View view) {
         Item item = marketplaceItems[8];
 
@@ -157,6 +199,10 @@ public class MarketActivity extends FragmentActivity {
         selectedItem = 8;
     }
 
+    /**
+     * Click handler for store item
+     * @param view selected store item
+     */
     public void onGoldClick(View view) {
         Item item = marketplaceItems[5];
 
@@ -168,6 +214,10 @@ public class MarketActivity extends FragmentActivity {
         selectedItem = 5;
     }
 
+    /**
+     * Click handler for store item
+     * @param view selected store item
+     */
     public void onChickenClick(View view) {
         Item item = marketplaceItems[4];
 
@@ -179,6 +229,10 @@ public class MarketActivity extends FragmentActivity {
         selectedItem = 4;
     }
 
+    /**
+     * Click handler for store item
+     * @param view selected store item
+     */
     public void onHorseClick(View view) {
         Item item = marketplaceItems[1];
 
@@ -190,6 +244,10 @@ public class MarketActivity extends FragmentActivity {
         selectedItem = 1;
     }
 
+    /**
+     * Click handler for store item
+     * @param view selected store item
+     */
     public void onSteerClick(View view) {
         Item item = marketplaceItems[0];
 
@@ -201,6 +259,10 @@ public class MarketActivity extends FragmentActivity {
         selectedItem = 0;
     }
 
+    /**
+     * Click handler for store item
+     * @param view selected store item
+     */
     public void onCoalClick(View view) {
         Item item = marketplaceItems[9];
 
@@ -212,6 +274,10 @@ public class MarketActivity extends FragmentActivity {
         selectedItem = 9;
     }
 
+    /**
+     * Click handler for store item
+     * @param view selected store item
+     */
     public void onSnakeOilClick( View view) {
         Item item = marketplaceItems[2];
 

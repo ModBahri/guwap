@@ -27,7 +27,15 @@ public abstract class Interactor {
 
     private Repository myRepository;
 
+    /**
+     * Interactor constructor
+     * @param repo repository to use
+     */
     protected Interactor(Repository repo) { myRepository = repo;}
 
+    /**
+     * Repository getter
+     * @return repository used
+     */
     protected Repository getRepository() { return myRepository; }
 }

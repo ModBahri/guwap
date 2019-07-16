@@ -8,12 +8,24 @@ public class MarketInteractor {
     private Item[] marketPlaceItems;
     private int myCredits;
 
+    /**
+     * Set up interaction
+     * @param mp marketplace to use
+     * @param player player to use
+     */
     public void Interaction(MarketPlace mp, Player player) {
         this.myCargo = player.getPlayerWagon().getCargo();
         this.marketPlaceItems = mp.getMarketPlaceItems();
         this.myCredits = player.getCredits();
     }
 
+    /**
+     * Buy item
+     * @param mp marketplace to use
+     * @param player player to use
+     * @param type type of thing
+     * @param quantity quantity to buy or sell
+     */
     public void buyItem(MarketPlace mp, Player player, int type, int quantity) {
         //player interactions:
         //playerInventory needs to be affected
@@ -29,6 +41,13 @@ public class MarketInteractor {
 
     }
 
+    /**
+     * sell item
+     * @param mp marketplace to use
+     * @param player player to use
+     * @param type type to sell
+     * @param quantity quantity to buy
+     */
     public void sellItem(MarketPlace mp, Player player, int type, int quantity) {
         //player interactions:
         //playerInventory needs to be affected

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -36,6 +38,10 @@ public class ConfigurationActivity extends AppCompatActivity {
     /** Player data */
     private Player player;
 
+    /**
+     * Initialized page when activity is opened
+     * @param savedInstanceState current state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,12 +142,20 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     }
 
-    public void onClickTravel () {
+    /**
+     * Click handler for Travel menu item
+     * @param menu selected menu item
+     */
+    public void onClickTravel (MenuItem menu) {
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
 
-    public void onClickMarket() {
+    /**
+     * Click handler for Market menu item
+     * @param menu selected menu item
+     */
+    public void onClickMarket(MenuItem menu) {
         Intent intent = new Intent(this, MarketActivity.class);
         startActivity(intent);
     }

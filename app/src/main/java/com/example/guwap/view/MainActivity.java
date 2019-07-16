@@ -11,12 +11,19 @@ import android.widget.TextView;
 
 import com.example.guwap.R;
 
+/**
+ * Main activity
+ */
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
+        /**
+         * Click handler for nav item
+         * @param item specific item
+         * @return successful?
+         */
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
@@ -34,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     *
+     * @param savedInstanceState current state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

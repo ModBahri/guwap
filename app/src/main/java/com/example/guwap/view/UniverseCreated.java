@@ -13,7 +13,10 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class UniverseCreated extends AppCompatActivity {
-
+    /**
+     * Creates universe
+     * @param savedInstanceState current state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

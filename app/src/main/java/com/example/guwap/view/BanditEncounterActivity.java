@@ -16,6 +16,10 @@ public class BanditEncounterActivity extends AppCompatActivity {
     private Button run;
     private ImageView sheriffIcon;
 
+    /**
+     * Initializes values on activity opened
+     * @param savedInstanceState current state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +27,10 @@ public class BanditEncounterActivity extends AppCompatActivity {
 
         tipHat = findViewById(R.id.tip_hat);
         tipHat.setOnClickListener(new View.OnClickListener(){
+            /**
+             * Click handler for "tip hat"
+             * @param v selected object
+             */
             @Override
             public void onClick(View v){
                 //If low notoriety, Get shook down by bandit
@@ -33,6 +41,10 @@ public class BanditEncounterActivity extends AppCompatActivity {
 
         shoot = findViewById(R.id.shoot);
         shoot.setOnClickListener(new View.OnClickListener() {
+            /**
+             * click handler for "shoot"
+             * @param v selected object
+             */
             @Override
             public void onClick(View v) {
                 //If low notoriety, Gun Showdown based on RNG; Notoriety increased Check????
@@ -43,6 +55,10 @@ public class BanditEncounterActivity extends AppCompatActivity {
 
         run = findViewById(R.id.run);
         run.setOnClickListener(new View.OnClickListener() {
+            /**
+             * click handler for "run"
+             * @param v selected view
+             */
             @Override
             public void onClick(View v) {
                 //If low notoriety, Escape probability based on RNG

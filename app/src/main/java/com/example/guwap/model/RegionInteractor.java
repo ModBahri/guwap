@@ -9,8 +9,18 @@ public class RegionInteractor extends Interactor{
 
     public List<Region> getAllRegions() { return getRepository().getAllRegions(); }
 
+    /**
+     * add region
+     * @param p region to add
+     */
     public void addRegion (Region p) { getRepository().addRegion(p); }
 
+    /**
+     * Distance between two locations
+     * @param current current location
+     * @param destination destination location
+     * @return distance between
+     */
     public double distanceBetween (Region current, Region destination) {
         double curlat = current.getLattitude();
         double curlong = current.getLongitude();

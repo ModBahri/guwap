@@ -38,6 +38,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker selectedMarker;
     private Circle circle;
 
+    /**
+     * Method called when activity is opened
+     * @param savedInstanceState current state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +65,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * If Google Play services is not installed on the device, the user will be prompted to install
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
+     * @param googleMap google map
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -102,9 +107,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(this);
 
 
+
     }
 
-    /** Called when the user clicks a marker. */
+    /**
+     * Click handler for markers
+     * @param marker marker object that was clicked
+     * @return successful?
+     */
     @Override
     public boolean onMarkerClick(final Marker marker) {
         selecLoc.setText(marker.getTitle());
@@ -112,6 +122,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return true;
     }
 
+    /**
+     * Click handler for travel button
+     * @param view selected view
+     */
     public void onTravelClick(View view) {
         if (selectedMarker != null) {
             for (Region region: Universe.regionArrayList) {
@@ -154,11 +168,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+    /**
+     * click handler for travel
+     * @param item selected menu item
+     */
     public void onClickTravel (MenuItem item) {
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * click handler for market menu item
+     * @param item selected menu item
+     */
     public void onClickMarket (MenuItem item) {
         Intent intent = new Intent(this, MarketActivity.class);
         startActivity(intent);
