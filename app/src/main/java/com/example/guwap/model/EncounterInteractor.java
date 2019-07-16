@@ -6,6 +6,10 @@ import com.example.guwap.entity.NPC;
 import com.example.guwap.entity.Player;
 import com.example.guwap.entity.Sheriff;
 
+/**
+ * Encounter interactor in the model
+ */
+
 public class EncounterInteractor {
     private Player player;
     private NPC npc;
