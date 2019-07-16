@@ -42,7 +42,7 @@ public class Item {
         }
         this.name = typeOfItem.getName();
         if ((pt == PeopleType.TROGOLODYTE || pt == PeopleType.BANDIT)
-                && (typeOfItem.getName() == "guns" || typeOfItem.getName() == "snakeoil")) {
+                && (typeOfItem.getName().equals("guns") || typeOfItem.getName().equals("snakeoil"))) {
             this.quantity = this.quantity * 2;
         } /*else if (pt == PeopleType.BANDIT) {
             this.quantity
