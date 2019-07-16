@@ -2,54 +2,62 @@ package com.example.guwap.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.guwap.R;
+import com.example.guwap.entity.Player;
+import com.example.guwap.model.EncounterInteractor;
 
 //Gabi
 public class SheriffEncounterActivity extends AppCompatActivity {
-    private Button tipHat2;
-    private Button shoot2;
-    private Button run2;
+    private Button tipHat;
+    private Button shoot;
+    private Button run;
+    private ImageView sheriff;
+    private EncounterInteractor encounterInteractor;
+
+    private Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sheriff_encounter);
+        setContentView(R.layout.activity_bandit_encounter);
+        encounterInteractor = new EncounterInteractor(player, 0.5);
+        tipHat = findViewById(R.id.tip_hat);
+        shoot = findViewById(R.id.shoot);
+        run = findViewById(R.id.run);
+        //RelativeLayout relative = (RelativeLayout) findViewById(R.id.sheriffIcon);
+        //relative.setBackgroundResource(0);
 
-        tipHat2 = findViewById(R.id.tip_hat);
-        tipHat2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                //If low notoriety, Let em pass
-
-                //If high notoriety, Gun Showdown based on RNG
-            }
-        });
-
-        shoot2 = findViewById(R.id.shoot);
-        shoot2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //If low notoriety, Gun Showdown based on RNG; Notoriety increased
-
-                //If high notoriety, Gun Showdown based on RNG; Notoriety increased
-            }
-        });
-
-        run2 = findViewById(R.id.run);
-        run2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //If low notoriety, Escape probability based on RNG; Notoriety increased
-
-                //If high notoriety, Escape probability based on RNG; Notoriety increased
-            }
-        });
+        //ImageView myImage = (ImageView) findViewById(R.id.sheriffIcon);
+        //myImage.setAlpha(0);
     }
-    //tipHat method
-    //shoot method
-    //run method
+
+    public void onTipPressed() {
+        encounterInteractor.playerTips();
+        encounterInteractor.npcActs();
+        if (encounterInteractor.getTip()) {
+            Intent intent = new Intent(this, MapsActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    public void onShootPressed() {
+        encounterInteractor.playerShoots();
+        encounterInteractor.npcActs();
+    }
+
+    public void onRunPressed() {
+        encounterInteractor.playerRuns();
+        if (!encounterInteractor.getRun()) {
+            encounterInteractor.npcActs();
+        } else {
+            Intent intent = new Intent(this, MapsActivity.class);
+            startActivity(intent);
+        }
+    }
 }

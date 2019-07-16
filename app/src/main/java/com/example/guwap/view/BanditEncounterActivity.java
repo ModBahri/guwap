@@ -6,51 +6,31 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.content.Intent;
 import android.widget.RelativeLayout;
 
 import com.example.guwap.R;
+import com.example.guwap.entity.Player;
+import com.example.guwap.model.EncounterInteractor;
+
 //Gabi
 public class BanditEncounterActivity extends AppCompatActivity {
     private Button tipHat;
     private Button shoot;
     private Button run;
-    private ImageView sheriffIcon;
+    private ImageView bandit;
+    private EncounterInteractor encounterInteractor;
+
+    private Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bandit_encounter);
-
+        encounterInteractor = new EncounterInteractor(player, 0.5);
         tipHat = findViewById(R.id.tip_hat);
-        tipHat.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                //If low notoriety, Get shook down by bandit
-
-                //If high notoriety, Let em pass
-            }
-        });
-
         shoot = findViewById(R.id.shoot);
-        shoot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //If low notoriety, Gun Showdown based on RNG; Notoriety increased Check????
-
-                //If high notoriety, Gun Showdown based on RNG; Notoriety increased
-            }
-        });
-
         run = findViewById(R.id.run);
-        run.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //If low notoriety, Escape probability based on RNG
-
-                //If high notoriety,  Escape probability based on RNG
-            }
-        });
-
         //RelativeLayout relative = (RelativeLayout) findViewById(R.id.sheriffIcon);
         //relative.setBackgroundResource(0);
 
@@ -58,7 +38,27 @@ public class BanditEncounterActivity extends AppCompatActivity {
         //myImage.setAlpha(0);
     }
 
-    //tipHat method
-    //shoot method
-    //run method
+    public void onTipPressed() {
+        encounterInteractor.playerTips();
+        encounterInteractor.npcActs();
+        if (encounterInteractor.getTip()) {
+            Intent intent = new Intent(this, MapsActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    public void onShootPressed() {
+        encounterInteractor.playerShoots();
+        encounterInteractor.npcActs();
+    }
+
+    public void onRunPressed() {
+        encounterInteractor.playerRuns();
+        if (!encounterInteractor.getRun()) {
+            encounterInteractor.npcActs();
+        } else {
+            Intent intent = new Intent(this, MapsActivity.class);
+            startActivity(intent);
+        }
+    }
 }
