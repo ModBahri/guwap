@@ -6,19 +6,28 @@ import com.example.guwap.entity.PeopleType;
 import java.util.ArrayList;
 import java.util.List;
 
+/*<<<<<<< HEAD
 public class Interactor {
-    private List<PeopleType> allPlayers;
+    private List<Player> allPlayers;
 
     public Interactor() {
-        allPlayers = new ArrayList<PeopleType>();
+        allPlayers = new ArrayList<Player>();
     }
 
-    public List<PeopleType > getAllPlayers() { return allPlayers; }
+    public List<Player> getAllPlayers() { return allPlayers; }
 
-    public void addPlayer(PeopleType player) {
+    public void addPlayer(Player player) {
         allPlayers.add(player);
     }
 
-    public static class NonPlayer implements Region.IEntity {
+    public static class NonPlayer implements Location.IEntity {
     }
+=======*/
+public abstract class Interactor {
+
+    private Repository myRepository;
+
+    protected Interactor(Repository repo) { myRepository = repo;}
+
+    protected Repository getRepository() { return myRepository; }
 }

@@ -36,9 +36,7 @@ public class Region{
         this.resources = resources;
     }
 
-    public double getLattitude() {
-        return lattitude;
-    }
+    public double getLattitude() { return lattitude; }
 
     public double getLongitude() {
         return longitude;
@@ -56,7 +54,25 @@ public class Region{
         return resources;
     }
 
-    public static interface IEntity {
+    public double distanceTo(Region region) {
+        double lat1 = this.lattitude;
+        double lon1 = this.longitude;
 
+        double lat2 = region.lattitude;
+        double lon2 = region.longitude;
+
+        double r = 6371e3; // metres
+        double φ1 = Math.toRadians(lat1);
+        double φ2 = Math.toRadians(lat2);
+        double Δφ = Math.toRadians(lat2-lat1);
+        double Δλ = Math.toRadians(lon2-lon1);
+
+        double a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+                Math.cos(φ1) * Math.cos(φ2) *
+                        Math.sin(Δλ/2) * Math.sin(Δλ/2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+        return r * c;
     }
+
 }

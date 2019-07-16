@@ -2,13 +2,21 @@ package com.example.guwap.entity;
 
 import android.util.Log;
 
-public class Player implements Region.IEntity {
+import java.util.Random;
+
+import static com.example.guwap.entity.Universe.regionArrayList;
+
+public class Player{
     private String name;
     private Difficulty difficulty;
     private final int INITIAL_SKILL_POINTS = 16;
-    private final int INITIAL_CREDITS = 1000;
+    private int credits;
     private int pilot, fighter, engineer, trader;
-    private Item[] playerInventory;
+    private Region region;
+    private Wagon playerWagon;
+    private int damage;
+    private int health;
+    private int notoriety;
 
     public Player() {
         this("Name", Difficulty.NORMAL, 0, 0, 0, 0);
@@ -21,13 +29,38 @@ public class Player implements Region.IEntity {
         this.engineer = engineer;
         this.trader = trader;
         this.fighter = fighter;
+        this.notoriety = 0;
+
+        if (difficulty == Difficulty.BEGINNER) {
+            damage = 20 + fighter;
+            health = 100;
+        } else if (difficulty == Difficulty.EASY) {
+            damage = 15 + fighter;
+            health = 90;
+        } else if (difficulty == Difficulty.NORMAL) {
+            damage = 10 + fighter;
+            health = 80;
+        } else if (difficulty == Difficulty.HARD) {
+            damage = 5 + fighter;
+            health = 70;
+        } else if (difficulty == Difficulty.IMPOSSIBLE) {
+            damage = 0 + fighter;
+            health = 60;
+        }
+
+        Random random = new Random();
+        this.region = regionArrayList.get(random.nextInt(13));
+        this.credits = 1000;
         Log.i("Information: ", "Player name: " + this.name
                 + "\n Difficulty: " + difficulty.toString()
                 + "\n pilot: " + this.pilot
                 + "\n engineer: " + this.engineer
                 + "\n fighter: " + this.fighter
-                + "\n trader: " + this.trader   );
-        this.playerInventory = new Items(difficulty).getItems();
+                + "\n trader: " + this.trader
+                + "\n health: " + this.health);
+
+        this.playerWagon = new Wagon(difficulty);
+
     }
 
 
@@ -35,24 +68,69 @@ public class Player implements Region.IEntity {
         return name;
     }
 
-    public Difficulty getDifficulty() { return difficulty; }
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
 
     public void setName(String name) {
         this.name = name;
     }
 
-
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
     }
 
+    public void setRegion(Region region) { this.region = region;}
+
     public String getPeopleType() { return this.difficulty.toString();}
 
-    public Item[] getPlayerInventory() {
-        return playerInventory;
+    public Wagon getPlayerWagon() {
+        return playerWagon;
     }
 
-    public void setPlayerInventory(Item[] playerInventory) {
-        this.playerInventory = playerInventory;
+    public void setPlayerWagon(Wagon playerWagon) {
+        this.playerWagon = playerWagon;
+    }
+
+    public Region getRegion() { return this.region; }
+
+    public int getCredits() {
+        return this.credits;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage() {
+        this.damage = damage;
+    }
+
+    public int getNotoriety() {
+        return notoriety;
+    }
+
+    public void setNotoriety(int notoriety) {
+        this.notoriety = notoriety;
+    }
+
+    public int getPilot() {
+        return pilot;
+    }
+
+    public int getFighter() {
+        return fighter;
     }
 }

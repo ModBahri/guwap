@@ -1,11 +1,14 @@
 package com.example.guwap.entity;
 
+
 import android.util.Log;
 
 import java.util.Random;
 
+import static com.example.guwap.entity.Universe.regionArrayList;
+
 public enum PeopleType {
-    TROGOLODYTE (0),
+    TROGLODYTE (0),
     BANDIT (1),
     AMERICAN (2),
     MEXICAN (3),
@@ -28,5 +31,4 @@ public enum PeopleType {
         Random random = new Random();
         return values()[random.nextInt(values().length)];
     }
-
 }

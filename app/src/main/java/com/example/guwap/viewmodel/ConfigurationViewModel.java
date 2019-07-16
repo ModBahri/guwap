@@ -1,12 +1,14 @@
 package com.example.guwap.viewmodel;
-
+/*
 import androidx.lifecycle.ViewModel;
 
-import com.example.guwap.model.Interactor;
-import com.example.guwap.entity.PeopleType;
+import com.example.guwap.model.PlayerInteractor;
+import com.example.guwap.entity.Player;
+import com.example.guwap.model.Repository;
 
 public class ConfigurationViewModel extends ViewModel {
-    private Interactor interactor = new Interactor();
-    public void addPlayer(PeopleType.Player player) { interactor.addPlayer(player); }
+    private PlayerInteractor interactor = new PlayerInteractor(new Repository());
+    public void addPlayer(Player player) { interactor.addPlayer(player); }
 
 }
+*/

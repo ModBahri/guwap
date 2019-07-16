@@ -16,12 +16,12 @@ import android.widget.Toast;
 
 import com.example.guwap.R;
 import com.example.guwap.entity.Difficulty;
-import com.example.guwap.entity.PeopleType;
-import com.example.guwap.viewmodel.ConfigurationViewModel;
+import com.example.guwap.entity.Player;
+import com.example.guwap.viewmodel.PlayerViewModel;
 
 public class ConfigurationActivity extends AppCompatActivity {
     /**View model reference*/
-    private ConfigurationViewModel viewModel;
+    private PlayerViewModel viewModel;
     private Button button;
 
     /** Widgets used in this model */
@@ -34,7 +34,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
 
     /** Player data */
-    private PeopleType.Player player;
+    private Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +51,12 @@ public class ConfigurationActivity extends AppCompatActivity {
         trader = findViewById(R.id.trader);
         fighter = findViewById(R.id.fighter);
         button = (Button) findViewById(R.id.create);
-        button.setOnClickListener(new View.OnClickListener() {
+      /*  button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openUniverseCreated();
+                openMainScreen();
             }
-        });
+        }); */
 
 
         /*
@@ -70,8 +70,6 @@ public class ConfigurationActivity extends AppCompatActivity {
         /*
           Add default text to buttons
          */
-        player = new PeopleType.Player();
-        nameField.setText(player.getName());
         difficulty.setSelection(2);
         pilot.setText("0");
         engineer.setText("0");
@@ -81,15 +79,11 @@ public class ConfigurationActivity extends AppCompatActivity {
         /*
           Set the viewmodel
          */
-        viewModel = ViewModelProviders.of(this).get(ConfigurationViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
 
 
     }
 
-    public void openUniverseCreated() {
-        Intent intent = new Intent(this, UniverseCreated.class);
-        startActivity(intent);
-    }
 
     public void sendMessage(View view) {
         // Do something in response to button
@@ -100,7 +94,7 @@ public class ConfigurationActivity extends AppCompatActivity {
      *
      * @param view the button that was pressed
      */
-    public void onAddPressed(View view) throws Exception{
+    public void onAddPressed(View view) {
         Context context = getApplicationContext();
         CharSequence text = "Hello toast!";
         int duration = Toast.LENGTH_SHORT;
@@ -131,13 +125,24 @@ public class ConfigurationActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(context, "Name cannot be blank", duration);
             toast.show();
         } else {
-            player = new PeopleType.Player(tName, tDifficulty, tPilot, tEngineer, tFighter, tTrader);
+            player = new Player(tName, tDifficulty, tPilot, tEngineer, tFighter, tTrader);
 
             viewModel.addPlayer(player);
 
-            finish();
+            Intent intent = new Intent(this, MarketActivity.class);
+            startActivity(intent);
         }
 
 
+    }
+
+    public void onClickTravel () {
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+    }
+
+    public void onClickMarket() {
+        Intent intent = new Intent(this, MarketActivity.class);
+        startActivity(intent);
     }
 }
