@@ -43,10 +43,10 @@ public class MuddassirTest {
         EncounterInteractor sheriffEncounter = new EncounterInteractor(player, 0.9);
 
         banditEncounter.playerShoots();
-        assertEquals(player.getNotoriety(), -15);
+        assertEquals(-15, player.getNotoriety());
 
         sheriffEncounter.playerShoots();
-        assertEquals(player.getNotoriety(), 0);
+        assertEquals(0, player.getNotoriety());
 
     }
 }
