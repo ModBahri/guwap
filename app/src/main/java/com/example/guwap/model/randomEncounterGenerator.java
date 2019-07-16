@@ -1,11 +1,11 @@
-import java.math.*;
 package com.example.guwap.model;
 import com.example.guwap.entity.Difficulty;
 
 public class randomEncounterGenerator {
-	private int chance;
+	private double chance;
 	private int enemyEncounter;
 	private int sheriffEncounter;
+	private boolean
 
 	public randomEncounterGenerator(Difficulty d) {
 		switch (d) {
@@ -32,8 +32,8 @@ public class randomEncounterGenerator {
 		}
 	}
 
-	public void diceRoll() {
-		double chance = Math.random();
+	public boolean diceRoll() {
+		chance = Math.random();
 		int d = (int) chance * 100;
 
 		if (d < enemyEncounter) {
