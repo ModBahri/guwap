@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.BanditEncounterActivity">
+
+
+    <TextView
+        android:id="@+id/bandit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="false"
+        android:layout_centerHorizontal="true"
+        android:text="You've Encountered a Bandit!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:layout_editor_absoluteX="62dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:id="@+id/tip_hat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/bandit"
+        android:layout_marginBottom="-439dp"
+        android:text="Tip Hat"
+        android:layout_marginLeft="18dp"
+        />
+
+    <Button
+        android:id="@+id/shoot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tip_hat"
+        android:layout_marginStart="53dp"
+        android:layout_marginLeft="53dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toEndOf="@+id/tip_hat"
+        android:layout_toRightOf="@+id/tip_hat"
+        android:text="Shoot" />
+
+    <Button
+        android:id="@+id/run"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/shoot"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toEndOf="@+id/shoot"
+        android:layout_toRightOf="@+id/shoot"
+        android:text="Run" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="375dp"
+        android:layout_height="406dp"
+        android:layout_above="@+id/shoot"
+        android:layout_below="@+id/bandit"
+        android:layout_alignEnd="@+id/bandit"
+        android:layout_alignRight="@+id/bandit"
+        android:layout_marginTop="-11dp"
+        android:layout_marginEnd="-41dp"
+        android:layout_marginRight="-41dp"
+        android:layout_marginBottom="-3dp"
+        app:srcCompat="@drawable/Bandit" />
+
+
+</RelativeLayout>
