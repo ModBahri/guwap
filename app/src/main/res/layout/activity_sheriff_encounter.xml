@@ -24,7 +24,8 @@
         android:text="Tip Hat"
         android:layout_alignBottom="@+id/sheriff"
         android:layout_marginBottom="-439dp"
-        android:layout_marginLeft="18dp" />
+        android:layout_marginLeft="18dp"
+        android:onClick="onTipPressed"/>
 
     <Button
         android:id="@+id/shoot2"
@@ -36,6 +37,7 @@
         android:layout_marginBottom="0dp"
         android:layout_toEndOf="@+id/tip_hat2"
         android:layout_toRightOf="@+id/tip_hat2"
+        android:onClick="onShootPressed"
         android:text="Shoot" />
 
     <Button
@@ -48,6 +50,7 @@
         android:layout_marginBottom="0dp"
         android:layout_toEndOf="@+id/shoot2"
         android:layout_toRightOf="@+id/shoot2"
+        android:onClick="onRunPressed"
         android:text="Run" />
 
     <ImageView

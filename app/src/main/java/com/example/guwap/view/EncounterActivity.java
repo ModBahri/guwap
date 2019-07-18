@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.guwap.R;
 import com.example.guwap.entity.Player;
@@ -20,6 +21,7 @@ public class EncounterActivity extends AppCompatActivity {
      */
     private Button meet;
     private Button run;
+    private ImageView challenger;
 
 
     /**
@@ -37,7 +39,7 @@ public class EncounterActivity extends AppCompatActivity {
         encounterInteractor = new EncounterInteractor(player);
         meet = findViewById(R.id.meet);
         run = findViewById(R.id.run);
-
+        challenger = findViewById(R.id.challenger);
     }
 
     protected void onRunPressed() {
