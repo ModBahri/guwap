@@ -17,12 +17,9 @@
         app:layout_constraintStart_toStartOf="@+id/textView7" />
 
     <ImageButton
-        android:id="@+id/imageButtonSnakeOil10"
+        android:id="@+id/imageButtonShroom"
         android:layout_width="0dp"
         android:layout_height="113dp"
-        android:layout_alignEnd="@+id/imageButtonShroom"
-        android:layout_alignRight="@+id/imageButtonShroom"
-        android:layout_alignBottom="@+id/imageButtonShroom"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="83dp"
         android:layout_marginRight="83dp"
@@ -50,9 +47,6 @@
         android:id="@+id/imageButtonWood"
         android:layout_width="0dp"
         android:layout_height="113dp"
-        android:layout_alignEnd="@+id/imageButtonShroom"
-        android:layout_alignRight="@+id/imageButtonShroom"
-        android:layout_alignBottom="@+id/imageButtonShroom"
         android:layout_marginTop="127dp"
         android:layout_marginBottom="127dp"
         android:background="@drawable/wood"
@@ -66,9 +60,6 @@
         android:id="@+id/imageButtonCoal"
         android:layout_width="0dp"
         android:layout_height="113dp"
-        android:layout_alignEnd="@+id/imageButtonShroom"
-        android:layout_alignRight="@+id/imageButtonShroom"
-        android:layout_alignBottom="@+id/imageButtonShroom"
         android:background="@drawable/coal"
         android:onClick="onCoalClick"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -80,27 +71,21 @@
         android:id="@+id/imageButtonPeyote"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_alignEnd="@+id/imageButtonShroom"
-        android:layout_alignRight="@+id/imageButtonShroom"
-        android:layout_alignBottom="@+id/imageButtonShroom"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="23dp"
         android:layout_marginRight="23dp"
         android:background="@drawable/peyote"
         android:onClick="onPeyoteClick"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButtonSnakeOil10"
-        app:layout_constraintEnd_toStartOf="@+id/imageButtonSnakeOil10"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButtonShroom"
+        app:layout_constraintEnd_toStartOf="@+id/imageButtonShroom"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageButtonSnakeOil10" />
+        app:layout_constraintTop_toTopOf="@+id/imageButtonShroom" />
 
     <ImageButton
         android:id="@+id/imageButtonChickenWing"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_alignEnd="@+id/imageButtonShroom"
-        android:layout_alignRight="@+id/imageButtonShroom"
-        android:layout_alignBottom="@+id/imageButtonShroom"
         android:background="@drawable/chickenwing"
         android:onClick="onChickenClick"
         app:layout_constraintBottom_toBottomOf="@+id/imageButtonWhiskey"
@@ -112,9 +97,6 @@
         android:id="@+id/imageButtonSnakeOil"
         android:layout_width="0dp"
         android:layout_height="113dp"
-        android:layout_alignEnd="@+id/imageButtonShroom"
-        android:layout_alignRight="@+id/imageButtonShroom"
-        android:layout_alignBottom="@+id/imageButtonShroom"
         android:background="@drawable/snakeoil"
         android:onClick="onSnakeOilClick"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -126,9 +108,6 @@
         android:id="@+id/imageButtonGold"
         android:layout_width="110dp"
         android:layout_height="72dp"
-        android:layout_alignEnd="@+id/imageButtonShroom"
-        android:layout_alignRight="@+id/imageButtonShroom"
-        android:layout_alignBottom="@+id/imageButtonShroom"
         android:background="@drawable/gold"
         android:onClick="onGoldClick"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -140,9 +119,6 @@
         android:id="@+id/imageButtonHorsie"
         android:layout_width="0dp"
         android:layout_height="113dp"
-        android:layout_alignEnd="@+id/imageButtonShroom"
-        android:layout_alignRight="@+id/imageButtonShroom"
-        android:layout_alignBottom="@+id/imageButtonShroom"
         android:layout_marginTop="127dp"
         android:layout_marginBottom="127dp"
         android:background="@drawable/horsie"
@@ -156,9 +132,6 @@
         android:id="@+id/imageButtonSteer"
         android:layout_width="110dp"
         android:layout_height="0dp"
-        android:layout_alignEnd="@+id/imageButtonShroom"
-        android:layout_alignRight="@+id/imageButtonShroom"
-        android:layout_alignBottom="@+id/imageButtonShroom"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/steeer"
@@ -172,9 +145,6 @@
         android:id="@+id/imageButtonWhiskey"
         android:layout_width="0dp"
         android:layout_height="113dp"
-        android:layout_alignEnd="@+id/imageButtonShroom"
-        android:layout_alignRight="@+id/imageButtonShroom"
-        android:layout_alignBottom="@+id/imageButtonShroom"
         android:layout_marginTop="55dp"
         android:background="@drawable/whiskey"
         android:onClick="onWhiskeyClick"
@@ -186,9 +156,6 @@
         android:id="@+id/imageButtonChew"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_alignEnd="@+id/imageButtonWhiskey"
-        android:layout_alignRight="@+id/imageButtonWhiskey"
-        android:layout_alignBottom="@+id/imageButtonWhiskey"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/chew"
@@ -239,8 +206,8 @@
         android:layout_marginLeft="4dp"
         android:layout_marginTop="14dp"
         android:text="Item Name"
-        app:layout_constraintStart_toEndOf="@+id/imageButtonSnakeOil10"
-        app:layout_constraintTop_toTopOf="@+id/imageButtonSnakeOil10" />
+        app:layout_constraintStart_toEndOf="@+id/imageButtonShroom"
+        app:layout_constraintTop_toTopOf="@+id/imageButtonShroom" />
 
     <EditText
         android:id="@+id/quantity"
@@ -276,8 +243,8 @@
         android:layout_marginLeft="4dp"
         android:layout_marginBottom="35dp"
         android:text="Price"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButtonSnakeOil10"
-        app:layout_constraintStart_toEndOf="@+id/imageButtonSnakeOil10" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageButtonShroom"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonShroom" />
 
     <TextView
         android:id="@+id/textView6"
@@ -285,7 +252,7 @@
         android:layout_height="wrap_content"
         android:text="In Your Inventory"
         app:layout_constraintBottom_toTopOf="@+id/invText"
-        app:layout_constraintStart_toEndOf="@+id/imageButtonSnakeOil10" />
+        app:layout_constraintStart_toEndOf="@+id/imageButtonShroom" />
 
     <TextView
         android:id="@+id/textView7"
@@ -305,7 +272,7 @@
         android:layout_marginRight="5dp"
         android:text="nameText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButtonSnakeOil10"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonShroom"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView

@@ -51,6 +51,7 @@ public class Player{
         Random random = new Random();
         this.region = regionArrayList.get(random.nextInt(13));
         this.credits = 1000;
+<<<<<<< HEAD
         //Log.i("Information: ", "Player name: " + this.name
         //                + "\n Difficulty: " + difficulty.toString()
         //                + "\n pilot: " + this.pilot
@@ -59,6 +60,8 @@ public class Player{
         //                + "\n trader: " + this.trader
         //                + "\n health: " + this.health);
 
+=======
+>>>>>>> b1bbfcd7f6e957e90c824f83e43c4aa9c17da4ca
         this.playerWagon = new Wagon(difficulty);
 
     }
