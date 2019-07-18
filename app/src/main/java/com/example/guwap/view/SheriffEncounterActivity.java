@@ -37,7 +37,7 @@ public class SheriffEncounterActivity extends AppCompatActivity {
         //myImage.setAlpha(0);
     }
 
-    public void onTipPressed() {
+    public void onTipPressed(View view) {
         encounterInteractor.playerTips();
         encounterInteractor.npcActs();
         if (encounterInteractor.getTip()) {
@@ -46,12 +46,17 @@ public class SheriffEncounterActivity extends AppCompatActivity {
         }
     }
 
-    public void onShootPressed() {
+    public void onShootPressed(View view) {
         encounterInteractor.playerShoots();
-        encounterInteractor.npcActs();
+        if (encounterInteractor.getNPCDead()) {
+            Intent intent = new Intent(this, MapsActivity.class);
+            startActivity(intent);
+        } else {
+            encounterInteractor.npcActs();
+        }
     }
 
-    public void onRunPressed() {
+    public void onRunPressed(View view) {
         encounterInteractor.playerRuns();
         if (!encounterInteractor.getRun()) {
             encounterInteractor.npcActs();
