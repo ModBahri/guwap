@@ -16,7 +16,7 @@ public class EncounterInteractor{
     private NPC npc;
     private double affiliation;
     private int notorietyModifier;
-    private boolean shoot, tip, run;
+    private boolean shoot, playerShoot, tip, run;
     private boolean playerDead, npcDead;
 
     public EncounterInteractor(Player player) {
@@ -26,6 +26,7 @@ public class EncounterInteractor{
     public EncounterInteractor(Player player, double affiliation) {
         this.player = player;
         this.affiliation = affiliation;
+        playerShoot = false;
         shoot = false;
         tip = false;
         run = false;
@@ -54,8 +55,13 @@ public class EncounterInteractor{
         }
     }
 
+    /**
+     * Player shoots NPC
+     * @return whether the player hits or not
+     */
     public boolean playerShoots() {
         double toHit = Math.random() * 100;
+        playerShoot = true;
         if (npc instanceof Sheriff) {
             player.setNotoriety(player.getNotoriety() + notorietyModifier);
         } else {
@@ -70,6 +76,9 @@ public class EncounterInteractor{
         }
     }
 
+    /**
+     * Player tips their hat to NPC
+     */
     public void playerTips() {
         if (npc instanceof Sheriff) {
             player.setNotoriety(player.getNotoriety() - notorietyModifier);
@@ -78,6 +87,9 @@ public class EncounterInteractor{
         }
     }
 
+    /**
+     * Player attempts to run from NPC
+     */
     public void playerRuns() {
         double toRun = Math.random() * 100;
         if (toRun >= 75 - player.getPilot() * 4) {
@@ -85,6 +97,9 @@ public class EncounterInteractor{
         }
     }
 
+    /**
+     * NPC acts. Can either shoot or tip hat
+     */
     public void npcActs() {
         shoot = false;
         tip = false;
@@ -103,10 +118,17 @@ public class EncounterInteractor{
         }
     }
 
+    /**
+     * NPC tips hat.
+     */
     public void npcTips() {
         tip = true;
     }
 
+    /**
+     * NPC shoots player
+     * @return whether they hit or not.
+     */
     public boolean npcShoots() {
         double toHit = Math.random() * 100;
         shoot = true;
@@ -119,26 +141,50 @@ public class EncounterInteractor{
         }
     }
 
+    /**
+     * getter for if NPC shot
+     * @return whether the NPC shot or not
+     */
     public boolean getShoot() {
         return shoot;
     }
 
+    /**
+     * getter for if NPC tipped
+     * @return whether the NPC tipped or not
+     */
     public boolean getTip() {
         return tip;
     }
 
+    /**
+     * getter for if player got away
+     * @return whether the player got away
+     */
     public boolean getRun() {
         return run;
     }
 
+    /**
+     * getter for the NPC parameter
+     * @return the NPC
+     */
     public NPC getNpc() {
         return npc;
     }
 
+    /**
+     * getter for if the NPC died
+     * @return whether the NPC died
+     */
     public boolean getNPCDead() {
         return npcDead;
     }
 
+    /**
+     * getter for if the player died
+     * @return whether the player died
+     */
     public boolean getPlayerDead() {
         return playerDead;
     }

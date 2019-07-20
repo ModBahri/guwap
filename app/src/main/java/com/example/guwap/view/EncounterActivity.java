@@ -45,7 +45,7 @@ public class EncounterActivity extends AppCompatActivity {
     protected void onRunPressed() {
         encounterInteractor.playerRuns();
         if (encounterInteractor.getRun()) {
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, ConflictResolved.class);
             startActivity(intent);
         } else {
             if (encounterInteractor.getNpc() instanceof Sheriff) {

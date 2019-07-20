@@ -42,7 +42,7 @@ public class BanditEncounterActivity extends AppCompatActivity {
         encounterInteractor.playerTips();
         encounterInteractor.npcActs();
         if (encounterInteractor.getTip()) {
-            Intent intent = new Intent(this, MapsActivity.class);
+            Intent intent = new Intent(this, ConflictResolved.class);
             startActivity(intent);
         }
     }
@@ -50,10 +50,14 @@ public class BanditEncounterActivity extends AppCompatActivity {
     public void onShootPressed(View view) {
         encounterInteractor.playerShoots();
         if (encounterInteractor.getNPCDead()) {
-            Intent intent = new Intent(this, MapsActivity.class);
+            Intent intent = new Intent(this, ConflictResolved.class);
             startActivity(intent);
         } else {
             encounterInteractor.npcActs();
+            if (encounterInteractor.getPlayerDead()) {
+                Intent intent = new Intent(this, GameOver.class);
+                startActivity(intent);
+            }
         }
     }
 
