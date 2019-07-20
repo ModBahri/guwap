@@ -2,7 +2,10 @@ package com.example.guwap.entity;
 
 import android.util.Log;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.Random;
+import java.util.UUID;
 
 import static com.example.guwap.entity.Universe.regionArrayList;
 
@@ -17,9 +20,10 @@ public class Player{
     private int damage;
     private int health;
     private int notoriety;
+    private String uuid;
 
     public Player() {
-        this("Name", Difficulty.NORMAL, 0, 0, 0, 0);
+        //this("Name", Difficulty.NORMAL, 0, 0, 0, 0);
     }
 
     public Player(String name, Difficulty difficulty, int pilot, int engineer, int fighter, int trader) {
@@ -61,6 +65,8 @@ public class Player{
 
         this.playerWagon = new Wagon(difficulty);
 
+        this.uuid = UUID.randomUUID().toString();
+
     }
 
 
@@ -68,6 +74,7 @@ public class Player{
         return name;
     }
 
+    @Exclude
     public Difficulty getDifficulty() {
         return difficulty;
     }
@@ -84,6 +91,7 @@ public class Player{
 
     public String getPeopleType() { return this.difficulty.toString();}
 
+    @Exclude
     public Wagon getPlayerWagon() {
         return playerWagon;
     }
@@ -92,6 +100,7 @@ public class Player{
         this.playerWagon = playerWagon;
     }
 
+    @Exclude
     public Region getRegion() { return this.region; }
 
     public int getCredits() {
@@ -122,6 +131,10 @@ public class Player{
         return notoriety;
     }
 
+    public int getINITIAL_SKILL_POINTS() {
+        return INITIAL_SKILL_POINTS;
+    }
+
     public void setNotoriety(int notoriety) {
         this.notoriety = notoriety;
     }
@@ -133,4 +146,6 @@ public class Player{
     public int getFighter() {
         return fighter;
     }
+
+    public String getId() { return this.uuid; }
 }

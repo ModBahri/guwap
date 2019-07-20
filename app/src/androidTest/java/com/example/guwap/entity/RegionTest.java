@@ -14,4 +14,13 @@ public class RegionTest {
         double dist = reg1.distanceTo(reg2);
         assertEquals(dist, 349000, 500);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void distanceToE() {
+        Region reg1 = null;
+        Region reg2 = new Region(38.746149, -105.184042,"Cripple Creek");
+
+        double dist = reg2.distanceTo(reg1);
+
+    }
 }

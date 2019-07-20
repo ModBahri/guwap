@@ -131,11 +131,9 @@ public class ConfigurationActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(context, "Name cannot be blank", duration);
             toast.show();
         } else {
-            player = new Player(tName, tDifficulty, tPilot, tEngineer, tFighter, tTrader);
-
-            viewModel.addPlayer(player);
-
+            String id = viewModel.addPlayer(tName, tDifficulty, tPilot, tEngineer, tFighter, tTrader);
             Intent intent = new Intent(this, MarketActivity.class);
+            intent.putExtra("PLAYER_ID", id);
             startActivity(intent);
         }
 

@@ -26,6 +26,13 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import static android.content.ContentValues.TAG;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
@@ -45,13 +52,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        //final DatabaseReference playersRef = database.child("players");
+        //DatabaseReference playerRef = playersRef.child(id);
+
+
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String id = getIntent().getStringExtra("PLAYER_ID");
+                player = dataSnapshot.child("players").child(id).getValue(Player.class);
+                Log.i("yeet", "Yeet");
+                player.setRegion(dataSnapshot.child("regions").child(id).getValue(Region.class));
+                render();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        });
+
+
+    }
+
+    public void render() {
         setContentView(R.layout.activity_maps);
-         //Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        //Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.nmap);
         mapFragment.getMapAsync(this);
         viewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
-        player = viewModel.getPlayer();
+        player = viewModel.getPlayer(getIntent().getStringExtra("PLAYER_ID"));
         cWings = findViewById(R.id.cWing);
         Log.i("Player name", player.getName());
     }
@@ -70,7 +106,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng curloc = new LatLng(viewModel.getRegion(player).getLattitude(), viewModel.getRegion(player).getLongitude());
+        LatLng curloc = new LatLng(player.getRegion().getLattitude(), player.getRegion().getLongitude());
         mMap.moveCamera(CameraUpdateFactory.newLatLng(curloc));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(5));
         player.getPlayerWagon().setDistance(player.getPlayerWagon().getCargo()[4].getQuantity() * 100000000);
@@ -84,7 +120,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         currLoc = findViewById(R.id.curr_loc);
         selecLoc = findViewById(R.id.selec_loc);
-        currLoc.setText(viewModel.getRegion(player).getName());
+        currLoc.setText(player.getName());
 
         cWings.setText(Integer.toString(player.getPlayerWagon().getCargo()[4].getQuantity()));
 
@@ -99,7 +135,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Log.i("Region:", name + pplType + resources);
 
             LatLng markerPos = new LatLng(lat, longe);
+
             Marker marker = mMap.addMarker(new MarkerOptions().position(markerPos).title(name));
+            selectedMarker = marker;
             marker.setTag(marker.hashCode());
         }
 
@@ -174,6 +212,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     public void onClickTravel (MenuItem item) {
         Intent intent = new Intent(this, MapsActivity.class);
+        intent.putExtra("PLAYER_ID", player.getId());
         startActivity(intent);
     }
 
@@ -183,6 +222,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     public void onClickMarket (MenuItem item) {
         Intent intent = new Intent(this, MarketActivity.class);
+        intent.putExtra("PLAYER_ID", player.getId());
         startActivity(intent);
     }
 }

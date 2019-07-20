@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "430112367530",
+    "firebase_url": "https://guwap-245920.firebaseio.com",
+    "project_id": "guwap-245920",
+    "storage_bucket": "guwap-245920.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430112367530:android:b0796063a6386266",
+        "android_client_info": {
+          "package_name": "com.example.guwap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "430112367530-9husej1nq8m9n1p6sducggmjkqqk9mgu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdcRt8pFYb9xsEhZMNqhkaa7oMqf7o58s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "430112367530-9husej1nq8m9n1p6sducggmjkqqk9mgu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -4,9 +4,21 @@ public class Region{
     private double lattitude;
     private double longitude;
     private String name;
-    private PeopleType peopleType;
-    private Resources resources;
+    private String peopleType;
+    private String resources;
+    private String fid;
 
+    public void setResources(String resources) {
+        this.resources = resources;
+    }
+
+    public String getFid() {
+        return fid;
+    }
+
+    public void setFid(String fid) {
+        this.fid = fid;
+    }
 
     public void setLattitude(double lattitude) {
         this.lattitude = lattitude;
@@ -20,21 +32,19 @@ public class Region{
         this.name = name;
     }
 
-    public Region(String name) {
-        this(Math.random()*(33.7493-33.7487)- 33.7493, Math.random()*(84.3877 - 84.3883) - 84.3877, name, PeopleType.randPeopleType(), Resources.randResources());
+    public Region() {
+
     }
+
 
     public Region(double lattitude, double longitude, String name) {
-        this(lattitude, longitude, name, PeopleType.randPeopleType(), Resources.randResources());
-    }
-
-    public Region(double lattitude, double longitude, String name, PeopleType peopleType, Resources resources) {
         this.lattitude = lattitude;
         this.longitude = longitude;
         this.name = name;
-        this.peopleType = peopleType;
-        this.resources = resources;
+        this.peopleType = new PeopleType(1).getType();
+        this.resources = new Resources(1).getType();
     }
+
 
     public double getLattitude() { return lattitude; }
 
@@ -46,15 +56,19 @@ public class Region{
         return name;
     }
 
-    public PeopleType getPeopleType() {
+    public String getPeopleType() {
         return peopleType;
     }
 
-    public Resources getResources() {
+    public String getResources() {
         return resources;
     }
 
     public double distanceTo(Region region) {
+        if (region == null) {
+            throw new IllegalArgumentException("Region cannot be null");
+        }
+
         double lat1 = this.lattitude;
         double lon1 = this.longitude;
 
@@ -75,4 +89,7 @@ public class Region{
         return r * c;
     }
 
+    public void setPeopleType(String peopleType) {
+        this.peopleType = peopleType;
+    }
 }

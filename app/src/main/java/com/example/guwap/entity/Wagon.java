@@ -13,6 +13,10 @@ public class Wagon {
         this.cargo[4].setQuantity(10);
     }
 
+    public Wagon() {
+
+    }
+
     public Item[] getCargo() {
         return cargo;
     }
@@ -22,6 +26,14 @@ public class Wagon {
     }
 
     public double getDistance() { return this.distance;}
+
+    public double getMaxDistance() {
+        return maxDistance;
+    }
+
+    public void setMaxDistance(double maxDistance) {
+        this.maxDistance = maxDistance;
+    }
 
     public void setDistance(double distance) { this.distance = distance; }
 }

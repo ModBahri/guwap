@@ -14,10 +14,20 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.guwap.R;
+import com.example.guwap.entity.Difficulty;
 import com.example.guwap.entity.Item;
 import com.example.guwap.entity.MarketPlace;
 import com.example.guwap.entity.Player;
+import com.example.guwap.entity.Region;
 import com.example.guwap.viewmodel.PlayerViewModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import static android.content.ContentValues.TAG;
 
 public class MarketActivity extends FragmentActivity {
     private Player player;
@@ -39,9 +49,37 @@ public class MarketActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        //final DatabaseReference playersRef = database.child("players");
+        //DatabaseReference playerRef = playersRef.child(id);
+
+
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String id = getIntent().getStringExtra("PLAYER_ID");
+                player = dataSnapshot.child("players").child(id).getValue(Player.class);
+                Log.i("yeet", "Yeet");
+                player.setRegion(dataSnapshot.child("regions").child(id).getValue(Region.class));
+                render();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+                // ...
+            }
+        });
+
+
+    }
+
+    public void render() {
         setContentView(R.layout.activity_market);
-        viewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
-        player = viewModel.getPlayer();
         quantity = findViewById(R.id.quantity);
         nameText = findViewById(R.id.nameText);
         availText = findViewById(R.id.availText);
@@ -103,25 +141,23 @@ public class MarketActivity extends FragmentActivity {
     }
 
     /**
-     * Click handler for travel menu item
+     * click handler for travel
      * @param item selected menu item
-     * @return successful?
      */
-    public boolean onClickTravel (MenuItem item) {
+    public void onClickTravel (MenuItem item) {
         Intent intent = new Intent(this, MapsActivity.class);
+        intent.putExtra("PLAYER_ID", player.getId());
         startActivity(intent);
-        return true;
     }
 
     /**
-     * Click handler for Market menu item
+     * click handler for market menu item
      * @param item selected menu item
-     * @return successful?
      */
-    public boolean onClickMarket(MenuItem item) {
+    public void onClickMarket (MenuItem item) {
         Intent intent = new Intent(this, MarketActivity.class);
+        intent.putExtra("PLAYER_ID", player.getId());
         startActivity(intent);
-        return true;
     }
 
     /**

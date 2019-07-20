@@ -1,33 +1,48 @@
 package com.example.guwap.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+public class Resources{
 
-public enum Resources {
-    NORESOURCES (0), //no resources
-    GRASSLAND (1), //steers, horses
-    DESERT (2), //peyote,
-    FOREST (3), //wood, horses
-    OASIS (4), //whiskey
-    CAVE (5), //weird mushrooms, coal, gold
-    MOUNTAINS (6), //coal, gold
-    ABANDONEDTRAINCAR (7), //guns, whiskey, snake oil
-    CITY (8), //tobacco, whiskey, snake oil, guns
-    TRIBAL (9), //tobacco, peyote
-    RICHFAUNA (10), //steers,
-    HERBS (11); //snake oil, peyote
+    private List<String> types;
+    private String type;
 
-    private final int code;
+    public Resources(int went) {
+        types = new ArrayList<>(12);
 
-    Resources(int code) {
-        this.code = code;
-    }
+        types.add("NoResources");
+        types.add("Grassland");
+        types.add("Desert");
+        types.add("Forest");
+        types.add("Oasis");
+        types.add("Cave");
+        types.add("Mountains");
+        types.add("AbandonedTrainCar");
+        types.add("City");
+        types.add("Tribal");
+        types.add("RichFauna");
+        types.add("Herbs");
 
-    public int getCode() {
-        return code;
-    }
-
-    public static Resources randResources(){
         Random random = new Random();
-        return values()[random.nextInt(values().length)];
+        type = types.get(random.nextInt(types.size()));
+    }
+
+    public Resources(){}
+
+    public List<String> getTypes() {
+        return types;
+    }
+
+    public void setTypes(List<String> types) {
+        this.types = types;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

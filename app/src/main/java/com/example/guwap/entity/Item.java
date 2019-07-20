@@ -23,7 +23,7 @@ public class Item {
         this.name = typeOfItem.getName();
     }
 
-    public Item(Difficulty d, Resources r, PeopleType pt, TypeOfItem typeOfItem) {
+    public Item(Difficulty d, String r, String pt, TypeOfItem typeOfItem) {
         if (d == Difficulty.BEGINNER) {
             this.price = typeOfItem.getPrice() / 2;
             this.quantity = (int) (Math.random() * ((400 - 200) + 1)) + 200;
@@ -38,8 +38,8 @@ public class Item {
             this.quantity = (int) (Math.random() * ((100 - 0) + 1)) + 0;
         }
         this.name = typeOfItem.getName();
-        if ((pt == PeopleType.TROGLODYTE || pt == PeopleType.BANDIT)
-                && (typeOfItem.getName() == "guns" || typeOfItem.getName() == "snakeoil")) {
+        if ((pt.equals("Troglodyte") || pt.equals("Bandit"))
+                && (typeOfItem.getName().equals("guns") || typeOfItem.getName().equals("snakeoil"))) {
             this.quantity = this.quantity * 2;
         } /*else if (pt == PeopleType.BANDIT) {
             this.quantity

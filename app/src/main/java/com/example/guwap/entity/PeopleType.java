@@ -3,32 +3,50 @@ package com.example.guwap.entity;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static com.example.guwap.entity.Universe.regionArrayList;
 
-public enum PeopleType {
-    TROGLODYTE (0),
-    BANDIT (1),
-    AMERICAN (2),
-    MEXICAN (3),
-    CHEYENNE (4),
-    APACHE (5),
-    COMANCHE (6),
-    NAVAJO (7);
+public class PeopleType {
 
-    private final int code;
+    private List<String> types;
+    private String type;
 
-    PeopleType(int code) {
-        this.code = code;
-    }
+    public PeopleType(int went) {
+        types = new ArrayList<>(8);
 
-    public int getCode() {
-        return code;
-    }
+        types.add("Troglodyte");
+        types.add("Bandit");
+        types.add("American");
+        types.add("Mexican");
+        types.add("Cheyenne");
+        types.add("Apache");
+        types.add("Comanche");
+        types.add("Navajo");
 
-    public static PeopleType randPeopleType() {
         Random random = new Random();
-        return values()[random.nextInt(values().length)];
+        type = types.get(random.nextInt(types.size()));
+    }
+
+    public PeopleType() {
+
+    }
+
+    public List<String> getTypes() {
+        return types;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setTypes(List<String> types) {
+        this.types = types;
     }
 }

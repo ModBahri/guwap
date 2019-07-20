@@ -1,60 +1,114 @@
 package com.example.guwap.model;
 
+import android.util.Log;
+
+import com.example.guwap.entity.Difficulty;
 import com.example.guwap.entity.Region;
 import com.example.guwap.entity.Player;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-public class PlayerInteractor extends Interactor {
+import com.google.firebase.FirebaseError;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import static android.content.ContentValues.TAG;
+
+public class PlayerInteractor {
+
+    private DatabaseReference database;
+    private DatabaseReference playerDB;
+    private DatabaseReference regionDB;
+    private DatabaseReference wagonDB;
+    private List<Player> playerList;
+
+    /** Singleton Pattern Code
+     *  this allows us to get access to this class
+     *  anywhere, which will allow our View models to access
+     *  the "back end"  more easily
+     */
+    private static  PlayerInteractor instance = new PlayerInteractor();
+
+    public static PlayerInteractor getInstance() { return instance; }
+
+
     /**
      * constructor for PlayerInteractor
-     * @param repo repository to use
      */
-    public PlayerInteractor(Repository repo) { super (repo);}
+    public PlayerInteractor() {
+        database = FirebaseDatabase.getInstance().getReference();
+        playerDB = database.child("players");
+        regionDB = database.child("regions");
+        wagonDB = database.child("wagon");
+        playerList = new ArrayList<>();
+
+
+
+    }
 
     /**
-     * gets all players in the repo
-     * @return
+     * Adds player
+     * @param name name of player
+     * @param difficulty difficulty level
+     * @param pilot pilot level
+     * @param engineer engineer level
+     * @param fighter fighter level
+     * @param trader trader level
      */
-    public List<Player> getAllPlayers() { return getRepository().getAllPlayers(); }
+    public String addPlayer (String name, Difficulty difficulty, int pilot, int engineer, int fighter, int trader) {
+        //getRepository().addPlayer(p);
+        Player player = new Player(name, difficulty, pilot, engineer, fighter, trader);
+        playerDB.child(player.getId()).setValue(player);
+        player.getRegion().setFid(player.getId());
+        regionDB.child(player.getId()).setValue(player.getRegion());
+        //wagonDB.child(player.getId()).setValue(player.getPlayerWagon());
+
+        return player.getId();
+    }
 
     /**
-     * adds player
-     * @param p player to add
+     * Updates player
+     * @param player player to update
      */
-    public void addPlayer (Player p) { getRepository().addPlayer(p); }
-
-    /**
-     * updates player
-     * @param p player to update
-     */
-    public void updatePlayer(Player p) {
-        getRepository().updatePlayer(p);
+    public void updatePlayer(Player player) {
+        database.child("player").child(player.getId()).setValue(player);
     }
 
     /**
      * deletes player
-     * @param p player to delete
+     * @param player player to delete
      */
-    public void deletePlayer(Player p) {
-        getRepository().deletePlayer(p);
+    public void deletePlayer(Player player) {
+       database.child("player").child(player.getId()).setValue(null);
     }
 
     /**
-     * updates region
-     * @param player player to use
-     * @param region region to use
+     * Gets player by id
+     * @param id id to use
+     * @return player with specified id
      */
-    public void updateRegion(Player player, Region region) {
-        //getRepository.
+    public Player getPlayer(String id) {
+        for (Player player: playerList) {
+            if (id.equals(player.getId())) {
+                return player;
+            }
+        }
+
+        return null;
     }
 
     /**
-     * gets current player
-     * @return current player
+     * gets the list of all players
+     * @return list of all players
      */
-    public Player getCurrentPlayer() {
-        return getRepository().getCurrent();
+    public List<Player> getPlayerList() {
+        return playerList;
     }
+
 
 }
