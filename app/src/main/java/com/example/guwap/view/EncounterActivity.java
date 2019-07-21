@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -38,7 +40,19 @@ public class EncounterActivity extends AppCompatActivity {
         player = viewModel.getPlayer();
         encounterInteractor = new EncounterInteractor(player);
         meet = findViewById(R.id.meet);
+        meet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onMeetPressed();
+            }
+        });
         run = findViewById(R.id.run);
+        run.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onRunPressed();
+            }
+        });
         challenger = findViewById(R.id.challenger);
     }
 

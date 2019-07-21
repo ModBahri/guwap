@@ -5,7 +5,7 @@ public enum Difficulty {
 
     private String difficultyLetter;
 
-    private Difficulty(String s) {
+    Difficulty(String s) {
         this.difficultyLetter = s;
     }
 }

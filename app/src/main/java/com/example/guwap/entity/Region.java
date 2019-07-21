@@ -1,7 +1,7 @@
 package com.example.guwap.entity;
 
 public class Region{
-    private double lattitude;
+    private double latitude;
     private double longitude;
     private String name;
     private PeopleType peopleType;
@@ -9,7 +9,7 @@ public class Region{
 
 
     public void setLattitude(double lattitude) {
-        this.lattitude = lattitude;
+        this.latitude = lattitude;
     }
 
     public void setLongitude(double longitude) {
@@ -29,14 +29,14 @@ public class Region{
     }
 
     public Region(double lattitude, double longitude, String name, PeopleType peopleType, Resources resources) {
-        this.lattitude = lattitude;
+        this.latitude = lattitude;
         this.longitude = longitude;
         this.name = name;
         this.peopleType = peopleType;
         this.resources = resources;
     }
 
-    public double getLattitude() { return lattitude; }
+    public double getLattitude() { return latitude; }
 
     public double getLongitude() {
         return longitude;
@@ -55,10 +55,10 @@ public class Region{
     }
 
     public double distanceTo(Region region) {
-        double lat1 = this.lattitude;
+        double lat1 = this.latitude;
         double lon1 = this.longitude;
 
-        double lat2 = region.lattitude;
+        double lat2 = region.latitude;
         double lon2 = region.longitude;
 
         double r = 6371e3; // metres
