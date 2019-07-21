@@ -19,6 +19,8 @@ import com.example.guwap.entity.Item;
 import com.example.guwap.entity.MarketPlace;
 import com.example.guwap.entity.Player;
 import com.example.guwap.entity.Region;
+import com.example.guwap.entity.Universe;
+import com.example.guwap.entity.Wagon;
 import com.example.guwap.viewmodel.PlayerViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,13 +29,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+
 import static android.content.ContentValues.TAG;
 
 public class MarketActivity extends FragmentActivity {
     private Player player;
     private PlayerViewModel viewModel;
     private EditText quantity;
-    private Item[] marketplaceItems;
+    private List<Item> marketplaceItems;
     private TextView nameText;
     private TextView availText;
     private TextView invText;
@@ -59,10 +64,13 @@ public class MarketActivity extends FragmentActivity {
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                CountDownLatch done = new CountDownLatch(1);
                 String id = getIntent().getStringExtra("PLAYER_ID");
                 player = dataSnapshot.child("players").child(id).getValue(Player.class);
-                Log.i("yeet", "Yeet");
                 player.setRegion(dataSnapshot.child("regions").child(id).getValue(Region.class));
+                player.setPlayerWagon(dataSnapshot.child("wagons").child(id).getValue(Wagon.class));
+                player.setUniverse(dataSnapshot.child("universes").child(id).getValue(Universe.class));
+                done.countDown();
                 render();
 
             }
@@ -94,7 +102,6 @@ public class MarketActivity extends FragmentActivity {
         availText.setText("");
         invText.setText("");
         priceText.setText("");
-        int cred = player.getCredits();
         yourGoldText.setText(Integer.toString(player.getCredits()));
 
         Log.i("Player name", player.getName());
@@ -107,8 +114,8 @@ public class MarketActivity extends FragmentActivity {
     public void onBuyClick (View view) {
         int quantint = Integer.parseInt(quantity.getText().toString());
         if(marketPlace.buyItem(player, selectedItem , quantint)){
-            availText.setText(Integer.toString(marketplaceItems[selectedItem].getQuantity()));
-            invText.setText(Integer.toString(player.getPlayerWagon().getCargo()[selectedItem].getQuantity()));
+            availText.setText(Integer.toString(marketplaceItems.get(selectedItem).getQuantity()));
+            invText.setText(Integer.toString(player.getPlayerWagon().getCargo().get(selectedItem).getQuantity()));
             quantity.setText("");
             yourGoldText.setText(Integer.toString(player.getCredits()));
         } else {
@@ -127,8 +134,8 @@ public class MarketActivity extends FragmentActivity {
     public void onSellClick (View view) {
         int quantint = Integer.parseInt(quantity.getText().toString());
         if(marketPlace.sellItem(player, selectedItem , quantint)){
-            availText.setText(Integer.toString(marketplaceItems[selectedItem].getQuantity()));
-            invText.setText(Integer.toString(player.getPlayerWagon().getCargo()[selectedItem].getQuantity()));
+            availText.setText(Integer.toString(marketplaceItems.get(selectedItem).getQuantity()));
+            invText.setText(Integer.toString(player.getPlayerWagon().getCargo().get(selectedItem).getQuantity()));
             quantity.setText("");
             yourGoldText.setText(Integer.toString(player.getCredits()));
         } else {
@@ -165,11 +172,11 @@ public class MarketActivity extends FragmentActivity {
      * @param view selected store item
      */
     public void onWhiskeyClick(View view) {
-        Item item = marketplaceItems[3];
+        Item item = marketplaceItems.get(3);
 
         nameText.setText("Whiskey");
         availText.setText(Integer.toString(item.getQuantity()));
-        invText.setText(Integer.toString(player.getPlayerWagon().getCargo()[3].getQuantity()));
+        invText.setText(Integer.toString(player.getPlayerWagon().getCargo().get(3).getQuantity()));
         priceText.setText(Integer.toString(item.getPrice()));
 
         selectedItem = 3;
@@ -180,11 +187,11 @@ public class MarketActivity extends FragmentActivity {
      * @param view selected store item
      */
     public void onWoodClick(View view) {
-        Item item = marketplaceItems[6];
+        Item item = marketplaceItems.get(6);
 
         nameText.setText("Wood");
         availText.setText(Integer.toString(item.getQuantity()));
-        invText.setText(Integer.toString(player.getPlayerWagon().getCargo()[6].getQuantity()));
+        invText.setText(Integer.toString(player.getPlayerWagon().getCargo().get(6).getQuantity()));
         priceText.setText(Integer.toString(item.getPrice()));
 
         selectedItem = 6;
@@ -195,11 +202,11 @@ public class MarketActivity extends FragmentActivity {
      * @param view selected store item
      */
     public void onChewClick(View view) {
-        Item item = marketplaceItems[7];
+        Item item = marketplaceItems.get(7);
 
         nameText.setText("Chew");
         availText.setText(Integer.toString(item.getQuantity()));
-        invText.setText(Integer.toString(player.getPlayerWagon().getCargo()[7].getQuantity()));
+        invText.setText(Integer.toString(player.getPlayerWagon().getCargo().get(7).getQuantity()));
         priceText.setText(Integer.toString(item.getPrice()));
 
         selectedItem = 7;
@@ -210,11 +217,11 @@ public class MarketActivity extends FragmentActivity {
      * @param view selected store item
      */
     public void onMushroomClick(View view) {
-        Item item = marketplaceItems[11];
+        Item item = marketplaceItems.get(11);
 
         nameText.setText("Strange Mushrooms");
         availText.setText(Integer.toString(item.getQuantity()));
-        invText.setText(Integer.toString(player.getPlayerWagon().getCargo()[11].getQuantity()));
+        invText.setText(Integer.toString(player.getPlayerWagon().getCargo().get(11).getQuantity()));
         priceText.setText(Integer.toString(item.getPrice()));
 
         selectedItem = 11;
@@ -225,11 +232,11 @@ public class MarketActivity extends FragmentActivity {
      * @param view selected store item
      */
     public void onPeyoteClick(View view) {
-        Item item = marketplaceItems[8];
+        Item item = marketplaceItems.get(8);
 
         nameText.setText("Peyote");
         availText.setText(Integer.toString(item.getQuantity()));
-        invText.setText(Integer.toString(player.getPlayerWagon().getCargo()[8].getQuantity()));
+        invText.setText(Integer.toString(player.getPlayerWagon().getCargo().get(8).getQuantity()));
         priceText.setText(Integer.toString(item.getPrice()));
 
         selectedItem = 8;
@@ -240,11 +247,11 @@ public class MarketActivity extends FragmentActivity {
      * @param view selected store item
      */
     public void onGoldClick(View view) {
-        Item item = marketplaceItems[5];
+        Item item = marketplaceItems.get(5);
 
         nameText.setText("Gold");
         availText.setText(Integer.toString(item.getQuantity()));
-        invText.setText(Integer.toString(player.getPlayerWagon().getCargo()[5].getQuantity()));
+        invText.setText(Integer.toString(player.getPlayerWagon().getCargo().get(5).getQuantity()));
         priceText.setText(Integer.toString(item.getPrice()));
 
         selectedItem = 5;
@@ -255,11 +262,11 @@ public class MarketActivity extends FragmentActivity {
      * @param view selected store item
      */
     public void onChickenClick(View view) {
-        Item item = marketplaceItems[4];
+        Item item = marketplaceItems.get(4);
 
         nameText.setText("Chicken Wing");
         availText.setText(Integer.toString(item.getQuantity()));
-        invText.setText(Integer.toString(player.getPlayerWagon().getCargo()[4].getQuantity()));
+        invText.setText(Integer.toString(player.getPlayerWagon().getCargo().get(4).getQuantity()));
         priceText.setText(Integer.toString(item.getPrice()));
 
         selectedItem = 4;
@@ -270,11 +277,11 @@ public class MarketActivity extends FragmentActivity {
      * @param view selected store item
      */
     public void onHorseClick(View view) {
-        Item item = marketplaceItems[1];
+        Item item = marketplaceItems.get(1);
 
         nameText.setText("Horse");
         availText.setText(Integer.toString(item.getQuantity()));
-        invText.setText(Integer.toString(player.getPlayerWagon().getCargo()[1].getQuantity()));
+        invText.setText(Integer.toString(player.getPlayerWagon().getCargo().get(1).getQuantity()));
         priceText.setText(Integer.toString(item.getPrice()));
 
         selectedItem = 1;
@@ -285,11 +292,11 @@ public class MarketActivity extends FragmentActivity {
      * @param view selected store item
      */
     public void onSteerClick(View view) {
-        Item item = marketplaceItems[0];
+        Item item = marketplaceItems.get(0);
 
         nameText.setText("Steer");
         availText.setText(Integer.toString(item.getQuantity()));
-        invText.setText(Integer.toString(player.getPlayerWagon().getCargo()[0].getQuantity()));
+        invText.setText(Integer.toString(player.getPlayerWagon().getCargo().get(0).getQuantity()));
         priceText.setText(Integer.toString(item.getPrice()));
 
         selectedItem = 0;
@@ -300,11 +307,11 @@ public class MarketActivity extends FragmentActivity {
      * @param view selected store item
      */
     public void onCoalClick(View view) {
-        Item item = marketplaceItems[9];
+        Item item = marketplaceItems.get(9);
 
         nameText.setText("Coal");
         availText.setText(Integer.toString(item.getQuantity()));
-        invText.setText(Integer.toString(player.getPlayerWagon().getCargo()[9].getQuantity()));
+        invText.setText(Integer.toString(player.getPlayerWagon().getCargo().get(9).getQuantity()));
         priceText.setText(Integer.toString(item.getPrice()));
 
         selectedItem = 9;
@@ -315,11 +322,11 @@ public class MarketActivity extends FragmentActivity {
      * @param view selected store item
      */
     public void onSnakeOilClick( View view) {
-        Item item = marketplaceItems[2];
+        Item item = marketplaceItems.get(2);
 
         nameText.setText("Snake Oil");
         availText.setText(Integer.toString(item.getQuantity()));
-        invText.setText(Integer.toString(player.getPlayerWagon().getCargo()[2].getQuantity()));
+        invText.setText(Integer.toString(player.getPlayerWagon().getCargo().get(2).getQuantity()));
         priceText.setText(Integer.toString(item.getPrice()));
 
         selectedItem = 2;

@@ -1,27 +1,38 @@
 package com.example.guwap.entity;
 
+import java.util.List;
+
 public class Wagon {
-    private Item[] cargo;
+    private List<Item> cargo;
     private double distance;
     private double maxDistance;
+    private String fid;
+
+    public String getFid() {
+        return fid;
+    }
+
+    public void setFid(String fid) {
+        this.fid = fid;
+    }
 
     public Wagon(Difficulty difficulty) {
         this.cargo = (new Items(difficulty)).getItems();
         this.maxDistance = 1000000000;
         this.distance = maxDistance;
 
-        this.cargo[4].setQuantity(10);
+        this.cargo.get(4).setQuantity(10);
     }
 
     public Wagon() {
 
     }
 
-    public Item[] getCargo() {
+    public List<Item> getCargo() {
         return cargo;
     }
 
-    public void setCargo(Item[] cargo) {
+    public void setCargo(List<Item> cargo) {
         this.cargo = cargo;
     }
 

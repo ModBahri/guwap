@@ -7,8 +7,6 @@ import com.google.firebase.database.Exclude;
 import java.util.Random;
 import java.util.UUID;
 
-import static com.example.guwap.entity.Universe.regionArrayList;
-
 public class Player{
     private String name;
     private Difficulty difficulty;
@@ -21,6 +19,7 @@ public class Player{
     private int health;
     private int notoriety;
     private String uuid;
+    private Universe universe;
 
     public Player() {
         //this("Name", Difficulty.NORMAL, 0, 0, 0, 0);
@@ -34,6 +33,7 @@ public class Player{
         this.trader = trader;
         this.fighter = fighter;
         this.notoriety = 0;
+        this.universe = new Universe(1);
 
         if (difficulty == Difficulty.BEGINNER) {
             damage = 20 + fighter;
@@ -53,7 +53,7 @@ public class Player{
         }
 
         Random random = new Random();
-        this.region = regionArrayList.get(random.nextInt(13));
+        this.region = universe.getRegionArrayList().get(random.nextInt(13));
         this.credits = 1000;
         Log.i("Information: ", "Player name: " + this.name
                 + "\n Difficulty: " + difficulty.toString()
@@ -69,6 +69,49 @@ public class Player{
 
     }
 
+    public void setPilot(int pilot) {
+        this.pilot = pilot;
+    }
+
+    public void setFighter(int fighter) {
+        this.fighter = fighter;
+    }
+
+    public int getEngineer() {
+        return engineer;
+    }
+
+    public void setEngineer(int engineer) {
+        this.engineer = engineer;
+    }
+
+    public int getTrader() {
+        return trader;
+    }
+
+    public void setTrader(int trader) {
+        this.trader = trader;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public Universe getUniverse() {
+        return universe;
+    }
+
+    public void setUniverse(Universe universe) {
+        this.universe = universe;
+    }
 
     public String getName() {
         return name;

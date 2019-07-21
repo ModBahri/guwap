@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static com.example.guwap.entity.Universe.regionArrayList;
-
 public class PeopleType {
 
     private List<String> types;

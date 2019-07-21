@@ -23,6 +23,10 @@ public class Item {
         this.name = typeOfItem.getName();
     }
 
+    public Item() {
+
+    }
+
     public Item(Difficulty d, String r, String pt, TypeOfItem typeOfItem) {
         if (d == Difficulty.BEGINNER) {
             this.price = typeOfItem.getPrice() / 2;
@@ -69,4 +73,6 @@ public class Item {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+
 }

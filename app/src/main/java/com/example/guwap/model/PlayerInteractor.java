@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.example.guwap.entity.Universe;
 import com.google.firebase.FirebaseError;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,6 +26,7 @@ public class PlayerInteractor {
     private DatabaseReference playerDB;
     private DatabaseReference regionDB;
     private DatabaseReference wagonDB;
+    private DatabaseReference universeDB;
     private List<Player> playerList;
 
     /** Singleton Pattern Code
@@ -44,10 +46,9 @@ public class PlayerInteractor {
         database = FirebaseDatabase.getInstance().getReference();
         playerDB = database.child("players");
         regionDB = database.child("regions");
-        wagonDB = database.child("wagon");
+        wagonDB = database.child("wagons");
+        universeDB = database.child("universes");
         playerList = new ArrayList<>();
-
-
 
     }
 
@@ -64,9 +65,17 @@ public class PlayerInteractor {
         //getRepository().addPlayer(p);
         Player player = new Player(name, difficulty, pilot, engineer, fighter, trader);
         playerDB.child(player.getId()).setValue(player);
+
         player.getRegion().setFid(player.getId());
         regionDB.child(player.getId()).setValue(player.getRegion());
-        //wagonDB.child(player.getId()).setValue(player.getPlayerWagon());
+
+        player.getPlayerWagon().setFid(player.getId());
+        wagonDB.child(player.getId()).setValue(player.getPlayerWagon());
+
+
+        player.getUniverse().setFid(player.getId());
+        universeDB.child(player.getId()).setValue(player.getUniverse());
+
 
         return player.getId();
     }

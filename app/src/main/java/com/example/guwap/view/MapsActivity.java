@@ -16,6 +16,7 @@ import com.example.guwap.R;
 import com.example.guwap.entity.Player;
 import com.example.guwap.entity.Region;
 import com.example.guwap.entity.Universe;
+import com.example.guwap.entity.Wagon;
 import com.example.guwap.viewmodel.PlayerViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -31,6 +32,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.concurrent.CountDownLatch;
 
 import static android.content.ContentValues.TAG;
 
@@ -61,10 +64,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                CountDownLatch done = new CountDownLatch(1);
                 String id = getIntent().getStringExtra("PLAYER_ID");
                 player = dataSnapshot.child("players").child(id).getValue(Player.class);
-                Log.i("yeet", "Yeet");
                 player.setRegion(dataSnapshot.child("regions").child(id).getValue(Region.class));
+                player.setPlayerWagon(dataSnapshot.child("wagons").child(id).getValue(Wagon.class));
+                player.setUniverse(dataSnapshot.child("universes").child(id).getValue(Universe.class));
+                done.countDown();
                 render();
 
             }
@@ -87,7 +93,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.nmap);
         mapFragment.getMapAsync(this);
         viewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
-        player = viewModel.getPlayer(getIntent().getStringExtra("PLAYER_ID"));
         cWings = findViewById(R.id.cWing);
         Log.i("Player name", player.getName());
     }
@@ -109,7 +114,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng curloc = new LatLng(player.getRegion().getLattitude(), player.getRegion().getLongitude());
         mMap.moveCamera(CameraUpdateFactory.newLatLng(curloc));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(5));
-        player.getPlayerWagon().setDistance(player.getPlayerWagon().getCargo()[4].getQuantity() * 100000000);
+        player.getPlayerWagon().setDistance(player.getPlayerWagon().getCargo().get(4).getQuantity() * 100000000);
         // Instantiates a new CircleOptions object and defines the center and radius
         CircleOptions circleOptions = new CircleOptions()
                 .center(curloc)
@@ -120,12 +125,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         currLoc = findViewById(R.id.curr_loc);
         selecLoc = findViewById(R.id.selec_loc);
-        currLoc.setText(player.getName());
+        currLoc.setText(player.getRegion().getName());
 
-        cWings.setText(Integer.toString(player.getPlayerWagon().getCargo()[4].getQuantity()));
+        cWings.setText(Integer.toString(player.getPlayerWagon().getCargo().get(4).getQuantity()));
 
 
-        for (Region region: Universe.regionArrayList) {
+        for (Region region: player.getUniverse().getRegionArrayList()) {
             String name = region.getName();
             String pplType = region.getPeopleType().toString();
             String resources = region.getResources().toString();
@@ -166,7 +171,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     public void onTravelClick(View view) {
         if (selectedMarker != null) {
-            for (Region region: Universe.regionArrayList) {
+            for (Region region: player.getUniverse().getRegionArrayList()) {
                 String name = region.getName();
                 if(selectedMarker.getTitle().equals(name)) {
                     if (player.getRegion().distanceTo(region) * 1200 > player.getPlayerWagon().getDistance()) {
@@ -180,16 +185,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         double dist = player.getRegion().distanceTo(region) * 1200;
                         double chknwings = (dist) / 100000000;
                         int iChkn = (int) chknwings;
-                        int curQuant = player.getPlayerWagon().getCargo()[4].getQuantity();
+                        int curQuant = player.getPlayerWagon().getCargo().get(4).getQuantity();
                         player.setRegion(region);
                         currLoc.setText(region.getName());
                         selecLoc.setText("");
                         LatLng curloc = new LatLng(region.getLattitude(), region.getLongitude());
                         mMap.moveCamera(CameraUpdateFactory.newLatLng(curloc));
-                        player.getPlayerWagon().getCargo()[4].setQuantity(curQuant - iChkn);
+                        player.getPlayerWagon().getCargo().get(4).setQuantity(curQuant - iChkn);
                         player.getPlayerWagon().setDistance(player.getPlayerWagon().getDistance() - dist);
 
                         circle.remove();
+
+                        curloc = new LatLng(player.getRegion().getLattitude(), player.getRegion().getLongitude());
+
+                        double dista = player.getPlayerWagon().getDistance();
 
                         CircleOptions circleOptions = new CircleOptions()
                                 .center(curloc)
@@ -198,7 +207,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         // Get back the mutable Circle
                         circle = mMap.addCircle(circleOptions);
 
-                        cWings.setText(Integer.toString(player.getPlayerWagon().getCargo()[4].getQuantity()));
+                        cWings.setText(Integer.toString(player.getPlayerWagon().getCargo().get(4).getQuantity()));
                     }
 
                 }

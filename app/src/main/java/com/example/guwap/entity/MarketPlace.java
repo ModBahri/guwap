@@ -3,14 +3,16 @@ package com.example.guwap.entity;
 import android.content.Context;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //Everything in this class was made by jorge.
 public class MarketPlace {
     private Region region;
-    private Item[] marketPlaceItems;
+    private List<Item> marketPlaceItems;
 
     public MarketPlace(Player player, Region region) {
-        Item[] items = new Items(player, region).getItems();
-        this.marketPlaceItems = items;
+        this.marketPlaceItems = new Items(player, region).getItems();
         this.region = region;
     }
 
@@ -22,11 +24,11 @@ public class MarketPlace {
         this.region = region;
     }
 
-    public Item[] getMarketPlaceItems() {
+    public List<Item> getMarketPlaceItems() {
         return marketPlaceItems;
     }
 
-    public void setMarketPlaceItems(Item[] marketPlaceItems) {
+    public void setMarketPlaceItems(List<Item> marketPlaceItems) {
         this.marketPlaceItems = marketPlaceItems;
     }
 
@@ -34,11 +36,11 @@ public class MarketPlace {
         //player interactions:
         //playerInventory needs to be affected
         //player credits need to be affect
-        if (player.getCredits() > (quantity * this.getMarketPlaceItems()[type].getPrice())
-                && quantity <= this.getMarketPlaceItems()[type].getQuantity()) {
-            player.getPlayerWagon().getCargo()[type].setQuantity(player.getPlayerWagon().getCargo()[type].getQuantity() + quantity);
-            this.getMarketPlaceItems()[type].setQuantity(this.getMarketPlaceItems()[type].getQuantity() - quantity);
-            player.setCredits(player.getCredits() - player.getPlayerWagon().getCargo()[type].getPrice() * quantity);
+        if (player.getCredits() > (quantity * this.getMarketPlaceItems().get(type).getPrice())
+                && quantity <= this.getMarketPlaceItems().get(type).getQuantity()) {
+            player.getPlayerWagon().getCargo().get(type).setQuantity(player.getPlayerWagon().getCargo().get(type).getQuantity() + quantity);
+            this.getMarketPlaceItems().get(type).setQuantity(this.getMarketPlaceItems().get(type).getQuantity() - quantity);
+            player.setCredits(player.getCredits() - player.getPlayerWagon().getCargo().get(type).getPrice() * quantity);
             return true;
         } else {
             return false;
@@ -50,9 +52,9 @@ public class MarketPlace {
         //player interactions:
         //playerInventory needs to be affected
         //player credits need to be affect
-        if (quantity <= player.getPlayerWagon().getCargo()[type].getQuantity()) {
-            player.getPlayerWagon().getCargo()[type].setQuantity(player.getPlayerWagon().getCargo()[type].getQuantity() - quantity);
-            player.setCredits(player.getCredits() + player.getPlayerWagon().getCargo()[type].getPrice() * quantity);
+        if (quantity <= player.getPlayerWagon().getCargo().get(type).getQuantity()) {
+            player.getPlayerWagon().getCargo().get(type).setQuantity(player.getPlayerWagon().getCargo().get(type).getQuantity() - quantity);
+            player.setCredits(player.getCredits() + player.getPlayerWagon().getCargo().get(type).getPrice() * quantity);
             return true;
         } else {
             return false;
