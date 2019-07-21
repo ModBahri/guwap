@@ -7,18 +7,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.content.Intent;
+import android.os.Handler;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.guwap.R;
 import com.example.guwap.entity.Player;
 import com.example.guwap.model.EncounterInteractor;
 
-//Gabi
+/**
+ * Bandit encounter
+ */
 public class BanditEncounterActivity extends AppCompatActivity {
     private Button tipHat;
     private Button shoot;
     private Button run;
-    private ImageView bandit;
+    private TextView bandit;
+    private TextView health;
     private EncounterInteractor encounterInteractor;
 
     private Player player;
@@ -31,6 +36,9 @@ public class BanditEncounterActivity extends AppCompatActivity {
         tipHat = findViewById(R.id.tip_hat);
         shoot = findViewById(R.id.shoot);
         run = findViewById(R.id.run);
+        bandit = findViewById(R.id.bandit);
+        health = findViewById(R.id.health);
+        health.setText(player.getHealth());
         //RelativeLayout relative = (RelativeLayout) findViewById(R.id.sheriffIcon);
         //relative.setBackgroundResource(0);
 
@@ -42,21 +50,83 @@ public class BanditEncounterActivity extends AppCompatActivity {
         encounterInteractor.playerTips();
         encounterInteractor.npcActs();
         if (encounterInteractor.getTip()) {
-            Intent intent = new Intent(this, ConflictResolved.class);
-            startActivity(intent);
+            bandit.setText("You tipped your hat, and the bandit tipped back!");
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(BanditEncounterActivity.this,
+                            ConflictResolved.class);
+                    startActivity(intent);
+                }
+            }, 2000);
+        } else {
+            bandit.setText("You tipped your hat, but the bandit ain't having it");
+            if (encounterInteractor.getNPCHits()) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bandit.setText("The bandit takes a shot and hits you!");
+                        health.setText(player.getHealth());
+                    }
+                }, 2000);
+            } else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bandit.setText("The bandit takes a shot but misses!");
+                    }
+                }, 2000);
+            }
         }
     }
 
     public void onShootPressed(View view) {
-        encounterInteractor.playerShoots();
+        boolean hit = encounterInteractor.playerShoots();
+        if (hit) {
+            bandit.setText("You took a shot, and you hit!");
+        } else {
+            bandit.setText("You took a shot, but you missed!");
+        }
         if (encounterInteractor.getNPCDead()) {
-            Intent intent = new Intent(this, ConflictResolved.class);
-            startActivity(intent);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bandit.setText("The bandit is dead as a door nail!");
+                }
+            }, 2000);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(BanditEncounterActivity.this,
+                            ConflictResolved.class);
+                    startActivity(intent);
+                }
+            }, 2000);
         } else {
             encounterInteractor.npcActs();
+            if (encounterInteractor.getShoot()){
+                if (encounterInteractor.getNPCHits()) {
+                    bandit.setText("The bandit takes a shot at you, and hits you!");
+                    health.setText(player.getHealth());
+                } else {
+                    bandit.setText("The bandit takes a shot at you, but misses!");
+                }
+            }
             if (encounterInteractor.getPlayerDead()) {
-                Intent intent = new Intent(this, GameOver.class);
-                startActivity(intent);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        bandit.setText("You've become dead meat!");
+                    }
+                }, 2000);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(BanditEncounterActivity.this,
+                                GameOver.class);
+                        startActivity(intent);
+                    }
+                }, 2000);
             }
         }
     }
@@ -65,9 +135,38 @@ public class BanditEncounterActivity extends AppCompatActivity {
         encounterInteractor.playerRuns();
         if (!encounterInteractor.getRun()) {
             encounterInteractor.npcActs();
+            if (encounterInteractor.getShoot()) {
+                bandit.setText("The bandit ain't lettin' you leave his sight");
+                if (encounterInteractor.getNPCHits()) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bandit.setText("The bandit takes a shot and hits you!");
+                            health.setText(player.getHealth());
+                        }
+                    }, 2000);
+                } else {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            bandit.setText("The bandit takes a shot but misses!");
+                        }
+                    }, 2000);
+                }
+            } else {
+                bandit.setText("The bandit stopped you, but let you go!");
+            }
         } else {
-            Intent intent = new Intent(this, MapsActivity.class);
-            startActivity(intent);
+            bandit.setText("You were able to make yourself scarce!");
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(BanditEncounterActivity.this,
+                            MapsActivity.class);
+                    startActivity(intent);
+                }
+            }, 2000);
+
         }
     }
 }

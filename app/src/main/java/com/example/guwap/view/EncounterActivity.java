@@ -16,13 +16,21 @@ import com.example.guwap.entity.Sheriff;
 import com.example.guwap.model.EncounterInteractor;
 import com.example.guwap.viewmodel.PlayerViewModel;
 
-
+/**
+ * Intermediary screen that decides whether player encounters a bandit or a sheriff
+ */
 public class EncounterActivity extends AppCompatActivity {
     /**
-     * widgets used
+     * button to confront NPC
      */
     private Button meet;
+    /**
+     * button to attempt to escape NPC
+     */
     private Button run;
+    /**
+     * image of approaching NPC
+     */
     private ImageView challenger;
 
 
@@ -32,6 +40,7 @@ public class EncounterActivity extends AppCompatActivity {
     private Player player;
     private PlayerViewModel viewModel;
     private EncounterInteractor encounterInteractor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

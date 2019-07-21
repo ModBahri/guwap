@@ -16,7 +16,7 @@ public class EncounterInteractor{
     private NPC npc;
     private double affiliation;
     private int notorietyModifier;
-    private boolean shoot, playerShoot, tip, run;
+    private boolean shoot, npcHit, tip, run;
     private boolean playerDead, npcDead;
 
     public EncounterInteractor(Player player) {
@@ -26,7 +26,7 @@ public class EncounterInteractor{
     public EncounterInteractor(Player player, double affiliation) {
         this.player = player;
         this.affiliation = affiliation;
-        playerShoot = false;
+        npcHit = false;
         shoot = false;
         tip = false;
         run = false;
@@ -61,7 +61,6 @@ public class EncounterInteractor{
      */
     public boolean playerShoots() {
         double toHit = Math.random() * 100;
-        playerShoot = true;
         if (npc instanceof Sheriff) {
             player.setNotoriety(player.getNotoriety() + notorietyModifier);
         } else {
@@ -129,15 +128,15 @@ public class EncounterInteractor{
      * NPC shoots player
      * @return whether they hit or not.
      */
-    public boolean npcShoots() {
+    public void npcShoots() {
         double toHit = Math.random() * 100;
         shoot = true;
         if (toHit >= 50 + player.getPilot() * 3) {
             player.setHealth(player.getHealth() - npc.getDamage());
             playerDead = player.getHealth() <= 0;
-            return true;
+            npcHit = true;
         } else {
-            return false;
+            npcHit = false;
         }
     }
 
@@ -147,6 +146,10 @@ public class EncounterInteractor{
      */
     public boolean getShoot() {
         return shoot;
+    }
+
+    public boolean getNPCHits() {
+        return npcHit;
     }
 
     /**

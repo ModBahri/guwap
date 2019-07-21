@@ -14,7 +14,7 @@
         android:layout_centerInParent="false"
         android:layout_centerHorizontal="true"
         android:text="You've Encountered a Bandit!"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         tools:layout_editor_absoluteX="62dp"
         tools:layout_editor_absoluteY="16dp" />
 
@@ -69,6 +69,24 @@
         android:layout_marginBottom="-3dp"
         app:srcCompat="@drawable/bandit" />
 
+    <TextView
+        android:id="@+id/health"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:textSize="70dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <TextView
+        android:id="@+id/healthLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/health"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"
+        android:text="Health" />
 
 
 </RelativeLayout>
