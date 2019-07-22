@@ -31,7 +31,7 @@ public class LoadActivity extends AppCompatActivity {
         //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //        difficulty.setAdapter(adapter);
 
-        ArrayAdapter<Player> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, );
+        ArrayAdapter<Player> adapter = new ArrayAdapter<Player>(this, android.R.layout.simple_spinner_item);
         //Name, Difficulty, Current Region??? possible characteristics in spinner
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         characterOptions.setAdapter(adapter);

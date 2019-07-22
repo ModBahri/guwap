@@ -26,6 +26,7 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.example.guwap.model.randomEncounterGenerator;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
@@ -37,6 +38,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView cWings;
     private Marker selectedMarker;
     private Circle circle;
+    private randomEncounterGenerator myGenerator = new randomEncounterGenerator(player.getDifficulty());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +127,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         toast.show();
 
                     } else {
+                        boolean result = myGenerator.diceRoll();
                         double dist = player.getRegion().distanceTo(region) * 1200;
                         double chknwings = (dist) / 100000000;
                         int iChkn = (int) chknwings;
@@ -138,6 +141,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         player.getPlayerWagon().setDistance(player.getPlayerWagon().getDistance() - dist);
 
                         circle.remove();
+
+                        if (result) {
+                            Intent intent = new Intent(this, EncounterActivity.class);
+                            startActivity(intent);
+                        }
 
                         CircleOptions circleOptions = new CircleOptions()
                                 .center(curloc)

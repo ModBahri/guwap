@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
  * @version 1.0
  */
 
-public class MuddassirTest {
+public class kangtest {
 
     @Test
     public void npcActsTest() {

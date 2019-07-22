@@ -3,31 +3,24 @@ import com.example.guwap.entity.Difficulty;
 
 public class randomEncounterGenerator {
 	private double chance;
-	private int enemyEncounter;
-	private int sheriffEncounter;
-	private boolean;
+	private int encounter;
 
 	public randomEncounterGenerator(Difficulty d) {
 		switch (d) {
 			case BEGINNER:
-				enemyEncounter = 20;
-				sheriffEncounter = 40;
+				encounter = 40;
 				break;
 			case EASY:
-				enemyEncounter = 30;
-				sheriffEncounter = 60;
+				encounter = 60;
 				break;
 			case NORMAL:
-				enemyEncounter = 40;
-				sheriffEncounter = 70;
+				encounter = 70;
 				break;
 			case HARD:
-				enemyEncounter = 50;
-				sheriffEncounter = 90;
+				encounter = 90;
 				break;
 			case IMPOSSIBLE:
-				enemyEncounter = 50;
-				sheriffEncounter = 100;
+				encounter = 100;
 				break;
 		}
 	}
@@ -36,10 +29,10 @@ public class randomEncounterGenerator {
 		chance = Math.random();
 		int d = (int) chance * 100;
 
-		if (d < enemyEncounter) {
-			//a bandit encounter occurs
-		} else if (d < sheriffEncounter) {
-			//a sheriff encounter occurs
+		if (d < encounter) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 }
