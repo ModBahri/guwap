@@ -18,7 +18,7 @@ public enum TypeOfItem {
     private String name;
     private int price;
     private int type;
-    private TypeOfItem(String name, int price, int type) {
+    TypeOfItem(String name, int price, int type) {
         this.name = name;
         this.price = price;
         this.type = type;

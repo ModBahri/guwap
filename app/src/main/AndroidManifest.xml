@@ -9,16 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".view.SheriffEncounterActivity"></activity>
+        <activity android:name=".view.SheriffEncounterActivity" />
         <activity android:name=".view.BanditEncounterActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD6_zYK1I6_SmIUvvXC8-xj5k4vDyucPp8" />
 
-        <activity android:name=".view.MainActivity"></activity>
-        <activity android:name=".view.MapsActivity"></activity>
-        <activity android:name=".view.MarketActivity"></activity>
+
+        <activity android:name=".view.MainActivity" />
+        <activity android:name=".view.MapsActivity" />
+        <activity android:name=".view.MarketActivity" />
 
         <activity
             android:name=".view.ConfigurationActivity"

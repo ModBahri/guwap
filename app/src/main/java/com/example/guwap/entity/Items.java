@@ -44,4 +44,3 @@ public class Items {
         this.items = items;
     }
 }
-
