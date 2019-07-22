@@ -18,7 +18,7 @@ public class Items {
         items = new Item[12];
 
         //Item exampleItem = new Item(Difficulty.NORMAL, Resources.NORESOURCES,
-        //        PeopleType.TROGOLODYTE, TypeOfItem.STEERS);
+        //        PeopleType.TROGLODYTE, TypeOfItem.STEERS);
         int i = 0;
         for (TypeOfItem typeOfItem : TypeOfItem.values()) {
             items[i] = new Item(player.getDifficulty(), region.getResources(),

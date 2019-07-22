@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.BanditEncounterActivity">
+    tools:context="com.example.guwap.view.BanditEncounterActivity">
 
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_centerInParent="false"
         android:layout_centerHorizontal="true"
         android:text="You've Encountered a Bandit!"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         tools:layout_editor_absoluteX="62dp"
         tools:layout_editor_absoluteY="16dp" />
 
@@ -26,6 +26,7 @@
         android:layout_marginBottom="-439dp"
         android:text="Tip Hat"
         android:layout_marginLeft="18dp"
+        android:onClick="onTipPressed"
         />
 
     <Button
@@ -38,6 +39,7 @@
         android:layout_marginBottom="0dp"
         android:layout_toEndOf="@+id/tip_hat"
         android:layout_toRightOf="@+id/tip_hat"
+        android:onClick="onShootPressed"
         android:text="Shoot" />
 
     <Button
@@ -50,6 +52,7 @@
         android:layout_marginBottom="0dp"
         android:layout_toEndOf="@+id/shoot"
         android:layout_toRightOf="@+id/shoot"
+        android:onClick="onRunPressed"
         android:text="Run" />
 
     <ImageView
@@ -65,6 +68,25 @@
         android:layout_marginRight="-41dp"
         android:layout_marginBottom="-3dp"
         app:srcCompat="@drawable/bandit" />
+
+    <TextView
+        android:id="@+id/health"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:textSize="70dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <TextView
+        android:id="@+id/healthLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/health"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"
+        android:text="Health" />
 
 
 </RelativeLayout>
