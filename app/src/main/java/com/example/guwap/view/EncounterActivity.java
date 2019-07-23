@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
@@ -33,7 +34,7 @@ import static android.content.ContentValues.TAG;
 /**
  * Intermediary screen that decides whether player encounters a bandit or a sheriff
  */
-public class EncounterActivity extends AppCompatActivity {
+public class EncounterActivity extends FragmentActivity {
     /**
      * button to confront NPC
      */

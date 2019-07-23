@@ -2,6 +2,7 @@ package com.example.guwap.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
@@ -29,7 +30,7 @@ import java.util.concurrent.CountDownLatch;
 import static android.content.ContentValues.TAG;
 
 //Gabi
-public class SheriffEncounterActivity extends AppCompatActivity {
+public class SheriffEncounterActivity extends FragmentActivity {
     private Button tipHat;
     private Button shoot;
     private Button run;

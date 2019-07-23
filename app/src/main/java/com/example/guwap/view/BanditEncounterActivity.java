@@ -2,6 +2,7 @@ package com.example.guwap.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
@@ -31,7 +32,7 @@ import static android.content.ContentValues.TAG;
 /**
  * Bandit encounter
  */
-public class BanditEncounterActivity extends AppCompatActivity {
+public class BanditEncounterActivity extends FragmentActivity{
     private Button tipHat;
     private Button shoot;
     private Button run;
