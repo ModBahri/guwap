@@ -20,7 +20,7 @@ public class Items {
 
     }
 
-    public Items(Difficulty difficulty) {
+    public Items(String difficulty) {
         items = new ArrayList<>(12);
 
         for (TypeOfItem typeOfItem : TypeOfItem.values()) {
@@ -32,7 +32,7 @@ public class Items {
         items = new ArrayList<>(12);
 
         for (TypeOfItem typeOfItem : TypeOfItem.values()) {
-            items.add(new Item(player.getDifficulty(), region.getResources(),
+            items.add(new Item(player.getDifficulty(), new Difficulty(1),
                     region.getPeopleType(), typeOfItem));
         }
     }

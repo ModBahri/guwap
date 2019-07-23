@@ -16,7 +16,7 @@ public class Wagon {
         this.fid = fid;
     }
 
-    public Wagon(Difficulty difficulty) {
+    public Wagon(String difficulty) {
         this.cargo = (new Items(difficulty)).getItems();
         this.maxDistance = 1000000000;
         this.distance = maxDistance;

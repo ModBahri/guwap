@@ -13,6 +13,7 @@ import com.example.guwap.viewmodel.PlayerViewModel;
 
 public class EncounterInteractor{
     private Player player;
+    private String difficulty;
     private NPC npc;
     private double affiliation;
     private int notorietyModifier;
@@ -24,6 +25,7 @@ public class EncounterInteractor{
     }
 
     public EncounterInteractor(Player player, double affiliation) {
+        this.difficulty = player.getDifficulty();
         this.player = player;
         this.affiliation = affiliation;
         npcHit = false;
@@ -37,19 +39,19 @@ public class EncounterInteractor{
         } else {
             npc = new Sheriff();
         }
-        if (player.getDifficulty() == Difficulty.BEGINNER) {
+        if (difficulty.equals("Beginner")) {
             npc.setDamage(5);
             notorietyModifier = 5;
-        } else if (player.getDifficulty() == Difficulty.EASY) {
+        } else if (difficulty.equals("Easy")) {
             npc.setDamage(10);
             notorietyModifier = 10;
-        } else if (player.getDifficulty() == Difficulty.NORMAL) {
+        } else if (difficulty.equals("Normal")) {
             npc.setDamage(15);
             notorietyModifier = 15;
-        } else if (player.getDifficulty() == Difficulty.HARD) {
+        } else if (difficulty.equals("Hard")) {
             npc.setDamage(20);
             notorietyModifier = 20;
-        } else if (player.getDifficulty() == Difficulty.IMPOSSIBLE) {
+        } else if (difficulty.equals("Impossible")) {
             npc.setDamage(25);
             notorietyModifier = 25;
         }

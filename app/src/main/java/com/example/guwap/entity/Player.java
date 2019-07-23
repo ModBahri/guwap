@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class Player{
     private String name;
-    private Difficulty difficulty;
+    private String difficulty;
     private final int INITIAL_SKILL_POINTS = 16;
     private int credits;
     private int pilot, fighter, engineer, trader;
@@ -25,9 +25,11 @@ public class Player{
         //this("Name", Difficulty.NORMAL, 0, 0, 0, 0);
     }
 
-    public Player(String name, Difficulty difficulty, int pilot, int engineer, int fighter, int trader) {
+    public Player(String name, int difficulty, int pilot, int engineer, int fighter, int trader) {
+        Difficulty df =  new Difficulty(difficulty);
+
         this.name = name;
-        this.difficulty = difficulty;
+        this.difficulty = df.getDifficulties().get(difficulty);
         this.pilot = pilot;
         this.engineer = engineer;
         this.trader = trader;
@@ -35,38 +37,32 @@ public class Player{
         this.notoriety = 0;
         this.universe = new Universe(1);
 
-        if (difficulty == Difficulty.BEGINNER) {
+        if (difficulty == 0) {
             damage = 20 + fighter;
             health = 100;
-        } else if (difficulty == Difficulty.EASY) {
+            this.playerWagon = new Wagon("Beginner");
+        } else if (difficulty == 1) {
             damage = 15 + fighter;
             health = 90;
-        } else if (difficulty == Difficulty.NORMAL) {
+            this.playerWagon = new Wagon("Easy");
+        } else if (difficulty == 2) {
             damage = 10 + fighter;
             health = 80;
-        } else if (difficulty == Difficulty.HARD) {
+            this.playerWagon = new Wagon("Normal");
+        } else if (difficulty == 3) {
             damage = 5 + fighter;
             health = 70;
-        } else if (difficulty == Difficulty.IMPOSSIBLE) {
+            this.playerWagon = new Wagon("Hard");
+        } else if (difficulty == 4) {
             damage = 0 + fighter;
             health = 60;
+            this.playerWagon = new Wagon("Impossible");
         }
 
         Random random = new Random();
         this.region = universe.getRegionArrayList().get(random.nextInt(13));
         this.credits = 1000;
-<<<<<<< HEAD
-        //Log.i("Information: ", "Player name: " + this.name
-        //                + "\n Difficulty: " + difficulty.toString()
-        //                + "\n pilot: " + this.pilot
-        //                + "\n engineer: " + this.engineer
-        //                + "\n fighter: " + this.fighter
-        //                + "\n trader: " + this.trader
-        //                + "\n health: " + this.health);
 
-=======
->>>>>>> b1bbfcd7f6e957e90c824f83e43c4aa9c17da4ca
-        this.playerWagon = new Wagon(difficulty);
 
         this.uuid = UUID.randomUUID().toString();
 
@@ -120,8 +116,7 @@ public class Player{
         return name;
     }
 
-    @Exclude
-    public Difficulty getDifficulty() {
+    public String getDifficulty() {
         return difficulty;
     }
 
@@ -129,7 +124,7 @@ public class Player{
         this.name = name;
     }
 
-    public void setDifficulty(Difficulty difficulty) {
+    public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
     }
 

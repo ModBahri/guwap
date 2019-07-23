@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.example.guwap.R;
 
-public class ConflictResolved extends AppCompatActivity{
+public class ConflictResolvedActivity extends AppCompatActivity{
     private Button next;
     private TextView win;
 

@@ -6,17 +6,17 @@ public class Item {
     private String name;
     private int quantity;
 
-    public Item(Difficulty difficulty, TypeOfItem typeOfItem) {
-        if (difficulty == Difficulty.BEGINNER) {
+    public Item(String difficulty, TypeOfItem typeOfItem) {
+        if (difficulty.equals("Beginner")) {
             this.price = typeOfItem.getPrice() / 2;
             this.quantity = 0;
-        } else if (difficulty == Difficulty.NORMAL) {
+        } else if (difficulty.equals("Easy")) {
             this.price = typeOfItem.getPrice();
             this.quantity = 0;
-        } else if (difficulty == Difficulty.HARD) {
+        } else if (difficulty.equals("Hard")) {
             this.price = typeOfItem.getPrice() * 2;
             this.quantity = 0;
-        } else if (difficulty == Difficulty.IMPOSSIBLE) {
+        } else if (difficulty.equals("Impossible")) {
             this.price = typeOfItem.getPrice() * 4;
             this.quantity = 0;
         }
@@ -27,17 +27,17 @@ public class Item {
 
     }
 
-    public Item(Difficulty d, String r, String pt, TypeOfItem typeOfItem) {
-        if (d == Difficulty.BEGINNER) {
+    public Item(String d, Difficulty r, String pt, TypeOfItem typeOfItem) {
+        if (d.equals("Beginner")) {
             this.price = typeOfItem.getPrice() / 2;
             this.quantity = (int) (Math.random() * ((400 - 200) + 1)) + 200;
-        } else if (d == Difficulty.NORMAL) {
+        } else if (d.equals("Easy")) {
             this.price = typeOfItem.getPrice();
             this.quantity = (int) (Math.random() * ((300 - 100) + 1)) + 100;
-        } else if (d == Difficulty.HARD) {
+        } else if (d.equals("Normal")) {
             this.price = typeOfItem.getPrice() * 2;
             this.quantity = (int) (Math.random() * ((200 - 0) + 1)) + 0;
-        } else if (d == Difficulty.IMPOSSIBLE) {
+        } else {
             this.price = typeOfItem.getPrice() * 4;
             this.quantity = (int) (Math.random() * ((100 - 0) + 1)) + 0;
         }

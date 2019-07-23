@@ -68,7 +68,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         /*
           Set up adapter to display the difficulty levels in the spinner
          */
-        ArrayAdapter<Difficulty> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Difficulty.values());
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, (new Difficulty(0)).getDifficulties());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficulty.setAdapter(adapter);
 
@@ -111,10 +111,8 @@ public class ConfigurationActivity extends AppCompatActivity {
          */
 
         String tName = nameField.getText().toString();
-        Difficulty tDifficulty = Difficulty.valueOf(difficulty
-                .getSelectedItem()
-                .toString()
-                .toUpperCase());
+        int tDifficulty = difficulty
+                .getSelectedItemPosition();
         int tPilot = Integer.parseInt(pilot.getText().toString());
         int tEngineer = Integer.parseInt(engineer.getText().toString());
         int tFighter = Integer.parseInt(fighter.getText().toString());

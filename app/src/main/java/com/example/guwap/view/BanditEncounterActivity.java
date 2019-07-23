@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.content.Intent;
 import android.os.Handler;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.guwap.R;
@@ -59,7 +57,7 @@ public class BanditEncounterActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     Intent intent = new Intent(BanditEncounterActivity.this,
-                            ConflictResolved.class);
+                            ConflictResolvedActivity.class);
                     startActivity(intent);
                 }
             }, 2000);
@@ -102,7 +100,7 @@ public class BanditEncounterActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     Intent intent = new Intent(BanditEncounterActivity.this,
-                            ConflictResolved.class);
+                            ConflictResolvedActivity.class);
                     startActivity(intent);
                 }
             }, 2000);

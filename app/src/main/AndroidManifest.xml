@@ -20,9 +20,11 @@
         <activity android:name=".view.MainActivity" />
         <activity android:name=".view.MapsActivity" />
         <activity android:name=".view.MarketActivity" />
+        <activity android:name=".view.ConfigurationActivity"/>
+        <activity android:name=".view.LoadActivity"/>
 
         <activity
-            android:name=".view.ConfigurationActivity"
+            android:name=".view.TitleScreenActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -47,6 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView cWings;
     private Marker selectedMarker;
     private Circle circle;
+    private DatabaseReference database;
 
     /**
      * Method called when activity is opened
@@ -56,7 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        database = FirebaseDatabase.getInstance().getReference();
         //final DatabaseReference playersRef = database.child("players");
         //DatabaseReference playerRef = playersRef.child(id);
 
@@ -222,6 +223,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onClickTravel (MenuItem item) {
         Intent intent = new Intent(this, MapsActivity.class);
         intent.putExtra("PLAYER_ID", player.getId());
+        database.child("players").child(player.getId()).setValue(player);
+        database.child("wagons").child(player.getId()).setValue(player.getPlayerWagon());
+        database.child("universes").child(player.getId()).setValue(player.getUniverse());
+
         startActivity(intent);
     }
 
@@ -232,6 +237,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onClickMarket (MenuItem item) {
         Intent intent = new Intent(this, MarketActivity.class);
         intent.putExtra("PLAYER_ID", player.getId());
+        database.child("players").child(player.getId()).setValue(player);
+        database.child("wagons").child(player.getId()).setValue(player.getPlayerWagon());
+        database.child("universes").child(player.getId()).setValue(player.getUniverse());
+
         startActivity(intent);
     }
 }

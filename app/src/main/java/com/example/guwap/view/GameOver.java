@@ -26,7 +26,7 @@ public class GameOver extends AppCompatActivity {
     }
 
     protected void onTitleScreenPressed() {
-        Intent intent = new Intent(this, TitleScreen.class);
+        Intent intent = new Intent(this, TitleScreenActivity.class);
         startActivity(intent);
     }
 }

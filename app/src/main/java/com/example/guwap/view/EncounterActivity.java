@@ -1,6 +1,5 @@
 package com.example.guwap.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -110,7 +109,7 @@ public class EncounterActivity extends AppCompatActivity {
     protected void onRunPressed() {
         encounterInteractor.playerRuns();
         if (encounterInteractor.getRun()) {
-            Intent intent = new Intent(this, ConflictResolved.class);
+            Intent intent = new Intent(this, ConflictResolvedActivity.class);
             startActivity(intent);
         } else {
             if (encounterInteractor.getNpc() instanceof Sheriff) {

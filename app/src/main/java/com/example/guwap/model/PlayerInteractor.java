@@ -61,7 +61,7 @@ public class PlayerInteractor {
      * @param fighter fighter level
      * @param trader trader level
      */
-    public String addPlayer (String name, Difficulty difficulty, int pilot, int engineer, int fighter, int trader) {
+    public String addPlayer (String name, int difficulty, int pilot, int engineer, int fighter, int trader) {
         //getRepository().addPlayer(p);
         Player player = new Player(name, difficulty, pilot, engineer, fighter, trader);
         playerDB.child(player.getId()).setValue(player);

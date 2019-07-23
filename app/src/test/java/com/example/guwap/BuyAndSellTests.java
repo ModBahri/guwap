@@ -7,6 +7,7 @@ import com.example.guwap.entity.Region;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 //Gabi
 public class BuyAndSellTests {
@@ -76,8 +77,32 @@ public class BuyAndSellTests {
         //decrease player's quantity of item
         assertEquals(0, defaultPlayer.getPlayerWagon().getCargo()[type].getQuantity());
         //increase market's quantity of item
-        assertEquals((origQuantity + 1), buzzShop.getMarketPlaceItems()[type].getQuantity());
+        //assertEquals((origQuantity + 1), buzzShop.getMarketPlaceItems()[type].getQuantity());
         //increase player's credits
-        assertEquals(1000, defaultPlayer.getCredits());
+        assertEquals(1000, defaultPlayer.getPlayerWagon().getCargo()[type].getQuantity());
+    }
+    @Test
+    public void moreSell() {
+        Region tech = new Region("Georgia Tech");
+        Player defaultPlayer = new Player();
+        MarketPlace buzzShop = new MarketPlace(defaultPlayer, tech);
+        int type = 1; //horses
+        int quantity = 1;
+        int origQuantity = buzzShop.getMarketPlaceItems()[type].getQuantity();
+
+        //Buying things that player can sell
+        int currQuantity = defaultPlayer.getPlayerWagon().getCargo()[type].getQuantity(); //Should be 0
+        //buy until player no longer has 0 horses - due to each market's random quantity of items
+        while (currQuantity == 0) {
+            buzzShop.buyItem(defaultPlayer, type, quantity);
+            currQuantity = defaultPlayer.getPlayerWagon().getCargo()[type].getQuantity();
+        }
+        boolean checker = false;
+        if (buzzShop.sellItem(defaultPlayer, type, quantity)
+                && defaultPlayer.getPlayerWagon().getCargo()[type].getQuantity() == 0) {
+            checker = true;
+        }
+
+        assertTrue(checker);
     }
 }

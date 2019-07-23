@@ -32,7 +32,7 @@ public class PlayerViewModel extends AndroidViewModel {
      * Method to add new player
      * @param player player to add
      */
-    public String addPlayer(String name, Difficulty difficulty, int pilot, int engineer, int fighter, int trader) {
+    public String addPlayer(String name, int difficulty, int pilot, int engineer, int fighter, int trader) {
        return model.addPlayer(name, difficulty, pilot, engineer, fighter, trader);
     }
 

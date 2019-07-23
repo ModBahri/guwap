@@ -46,6 +46,7 @@ public class MarketActivity extends FragmentActivity {
     private TextView yourGoldText;
     private int selectedItem;
     private MarketPlace marketPlace;
+    private DatabaseReference database;
 
     /**
      * Method that runs when activity is started
@@ -56,7 +57,7 @@ public class MarketActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
 
 
-        final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        database = FirebaseDatabase.getInstance().getReference();
         //final DatabaseReference playersRef = database.child("players");
         //DatabaseReference playerRef = playersRef.child(id);
 
@@ -154,6 +155,10 @@ public class MarketActivity extends FragmentActivity {
     public void onClickTravel (MenuItem item) {
         Intent intent = new Intent(this, MapsActivity.class);
         intent.putExtra("PLAYER_ID", player.getId());
+        database.child("players").child(player.getId()).setValue(player);
+        database.child("wagons").child(player.getId()).setValue(player.getPlayerWagon());
+        database.child("universes").child(player.getId()).setValue(player.getUniverse());
+
         startActivity(intent);
     }
 
@@ -164,6 +169,10 @@ public class MarketActivity extends FragmentActivity {
     public void onClickMarket (MenuItem item) {
         Intent intent = new Intent(this, MarketActivity.class);
         intent.putExtra("PLAYER_ID", player.getId());
+        database.child("players").child(player.getId()).setValue(player);
+        database.child("wagons").child(player.getId()).setValue(player.getPlayerWagon());
+        database.child("universes").child(player.getId()).setValue(player.getUniverse());
+
         startActivity(intent);
     }
 

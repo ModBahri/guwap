@@ -51,7 +51,7 @@ public class SheriffEncounterActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     Intent intent = new Intent(SheriffEncounterActivity.this,
-                            ConflictResolved.class);
+                            ConflictResolvedActivity.class);
                     startActivity(intent);
                 }
             }, 2000);
@@ -94,7 +94,7 @@ public class SheriffEncounterActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     Intent intent = new Intent(SheriffEncounterActivity.this,
-                            ConflictResolved.class);
+                            ConflictResolvedActivity.class);
                     startActivity(intent);
                 }
             }, 2000);

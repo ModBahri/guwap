@@ -16,7 +16,7 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/NewButton"
+        android:id="@+id/newbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView14"
@@ -28,10 +28,10 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/SavedButton"
+        android:id="@+id/savedbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/NewButton"
+        android:layout_below="@+id/newbutton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"
         android:background="@android:color/black"
