@@ -13,7 +13,7 @@
         android:textSize="18sp" />
 
     <Spinner
-        android:id="@+id/CharacterSpinner"
+        android:id="@+id/character_spinner"
         android:layout_marginLeft="20dp"
         android:layout_width="332dp"
         android:layout_height="34dp"
@@ -25,7 +25,7 @@
         android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/CharacterSpinner"
+        android:layout_below="@+id/character_spinner"
         android:layout_marginTop="55dp"
         android:text="Load" />
 </RelativeLayout>

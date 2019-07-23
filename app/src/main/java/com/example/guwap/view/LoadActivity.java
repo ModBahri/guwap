@@ -2,6 +2,7 @@ package com.example.guwap.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,6 +37,7 @@ public class LoadActivity extends AppCompatActivity {
     private Spinner characterOptions;
     private Button load;
     private List<Player> players;
+    private ArrayAdapter<Player> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +71,14 @@ public class LoadActivity extends AppCompatActivity {
     }
 
     public void render() {
-        characterOptions = findViewById(R.id.CharacterSpinner);
+        setContentView(R.layout.activity_load);
+        characterOptions = findViewById(R.id.character_spinner);
+        Context context = getApplicationContext();
 
         //Dummy Data
-        final ArrayAdapter<Player> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, players);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, players);
+
+        final LoadActivity instance = this;
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         characterOptions.setAdapter(adapter);
@@ -82,7 +88,7 @@ public class LoadActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (characterOptions.getSelectedItem() != null){
-                    Intent intent = new Intent(LoadActivity.this, MainActivity.class);
+                    Intent intent = new Intent(instance, MapsActivity.class);
                     intent.putExtra("PLAYER_ID", adapter.getItem(characterOptions.getSelectedItemPosition()).getId());
                     startActivity(intent);
                 }
@@ -91,5 +97,3 @@ public class LoadActivity extends AppCompatActivity {
         });
     }
 }
-
-

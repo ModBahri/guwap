@@ -1,6 +1,8 @@
 package com.example.guwap.view;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Context;
@@ -17,6 +19,7 @@ import com.example.guwap.entity.Player;
 import com.example.guwap.entity.Region;
 import com.example.guwap.entity.Universe;
 import com.example.guwap.entity.Wagon;
+import com.example.guwap.model.randomEncounterGenerator;
 import com.example.guwap.viewmodel.PlayerViewModel;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -48,6 +51,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Marker selectedMarker;
     private Circle circle;
     private DatabaseReference database;
+    private randomEncounterGenerator myGenerator;
 
     /**
      * Method called when activity is opened
@@ -56,7 +60,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         database = FirebaseDatabase.getInstance().getReference();
         //final DatabaseReference playersRef = database.child("players");
         //DatabaseReference playerRef = playersRef.child(id);
@@ -88,6 +91,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void render() {
+        myGenerator = new randomEncounterGenerator(player.getDifficulty());
         setContentView(R.layout.activity_maps);
         //Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -183,6 +187,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         toast.show();
 
                     } else {
+                        boolean result = myGenerator.diceRoll();
                         double dist = player.getRegion().distanceTo(region) * 1200;
                         double chknwings = (dist) / 100000000;
                         int iChkn = (int) chknwings;
@@ -197,9 +202,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                         circle.remove();
 
+
                         curloc = new LatLng(player.getRegion().getLattitude(), player.getRegion().getLongitude());
 
                         double dista = player.getPlayerWagon().getDistance();
+
+                        if (result) {
+                            Intent intent = new Intent(this, EncounterActivity.class);
+                            intent.putExtra("PLAYER_ID", player.getId());
+                            database.child("players").child(player.getId()).setValue(player);
+                            database.child("wagons").child(player.getId()).setValue(player.getPlayerWagon());
+                            database.child("universes").child(player.getId()).setValue(player.getUniverse());
+                            startActivity(intent);
+                        }
+
 
                         CircleOptions circleOptions = new CircleOptions()
                                 .center(curloc)
@@ -243,5 +259,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         startActivity(intent);
     }
-}
 
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.nmap);//getFragmentManager().findFragmentById(R.id.nav_view);
+        FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
+        ft.remove(fragment);
+        ft.commit();
+    }
+}

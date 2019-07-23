@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".view.SheriffEncounterActivity" />
         <activity android:name=".view.BanditEncounterActivity" />
+        <activity android:name=".view.EncounterActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

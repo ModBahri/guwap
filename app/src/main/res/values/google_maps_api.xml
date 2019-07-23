@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name= "AIzaSyD6Y6yDWI9qoZhqAgeKk1UD8Vt6l81qYvg" templateMergeStrategy="preserve" translatable="false">YOUR_KEY_HERE</string>
+</resources>

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.View;
@@ -52,13 +54,14 @@ public class EncounterActivity extends AppCompatActivity {
     private Player player;
     private PlayerViewModel viewModel;
     private EncounterInteractor encounterInteractor;
+     DatabaseReference database;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        database = FirebaseDatabase.getInstance().getReference();
         //final DatabaseReference playersRef = database.child("players");
         //DatabaseReference playerRef = playersRef.child(id);
 
@@ -87,36 +90,48 @@ public class EncounterActivity extends AppCompatActivity {
     }
 
     public void render(){
-    setContentView(R.layout.activity_encounter);
-    encounterInteractor = new EncounterInteractor(player);
-    meet = findViewById(R.id.meet);
-        meet.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            onMeetPressed();
-        }
-    });
-    run = findViewById(R.id.run);
-        run.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            onRunPressed();
-        }
-    });
-    challenger = findViewById(R.id.challenger);
-}
+        setContentView(R.layout.activity_encounter);
+        encounterInteractor = new EncounterInteractor(player);
+        meet = findViewById(R.id.meet);
+            meet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onMeetPressed();
+            }
+        });
+        run = findViewById(R.id.run);
+            run.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onRunPressed();
+            }
+        });
+        challenger = findViewById(R.id.challenger);
+    }
 
     protected void onRunPressed() {
         encounterInteractor.playerRuns();
         if (encounterInteractor.getRun()) {
             Intent intent = new Intent(this, ConflictResolvedActivity.class);
+            intent.putExtra("PLAYER_ID", player.getId());
+            database.child("players").child(player.getId()).setValue(player);
+            database.child("wagons").child(player.getId()).setValue(player.getPlayerWagon());
+            database.child("universes").child(player.getId()).setValue(player.getUniverse());
             startActivity(intent);
         } else {
             if (encounterInteractor.getNpc() instanceof Sheriff) {
                 Intent intent = new Intent(this, SheriffEncounterActivity.class);
+                intent.putExtra("PLAYER_ID", player.getId());
+                database.child("players").child(player.getId()).setValue(player);
+                database.child("wagons").child(player.getId()).setValue(player.getPlayerWagon());
+                database.child("universes").child(player.getId()).setValue(player.getUniverse());
                 startActivity(intent);
             } else {
                 Intent intent = new Intent(this, BanditEncounterActivity.class);
+                intent.putExtra("PLAYER_ID", player.getId());
+                database.child("players").child(player.getId()).setValue(player);
+                database.child("wagons").child(player.getId()).setValue(player.getPlayerWagon());
+                database.child("universes").child(player.getId()).setValue(player.getUniverse());
                 startActivity(intent);
             }
         }
@@ -125,10 +140,29 @@ public class EncounterActivity extends AppCompatActivity {
     protected void onMeetPressed() {
         if (encounterInteractor.getNpc() instanceof Sheriff) {
             Intent intent = new Intent(this, SheriffEncounterActivity.class);
+            intent.putExtra("PLAYER_ID", player.getId());
+            database.child("players").child(player.getId()).setValue(player);
+            database.child("wagons").child(player.getId()).setValue(player.getPlayerWagon());
+            database.child("universes").child(player.getId()).setValue(player.getUniverse());
             startActivity(intent);
         } else {
             Intent intent = new Intent(this, BanditEncounterActivity.class);
+            intent.putExtra("PLAYER_ID", player.getId());
+            database.child("players").child(player.getId()).setValue(player);
+            database.child("wagons").child(player.getId()).setValue(player.getPlayerWagon());
+            database.child("universes").child(player.getId()).setValue(player.getUniverse());
             startActivity(intent);
         }
     }
+
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        Fragment fragment = getSupportFragmentManager().getPrimaryNavigationFragment();//.findFragmentById(R.id.nmap);//getFragmentManager().findFragmentById(R.id.nav_view);
+        FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
+        ft.remove(fragment);
+        ft.commit();
+    }
+
 }

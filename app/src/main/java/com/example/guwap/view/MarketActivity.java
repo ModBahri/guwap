@@ -10,7 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.guwap.R;
@@ -339,6 +341,16 @@ public class MarketActivity extends FragmentActivity {
         priceText.setText(Integer.toString(item.getPrice()));
 
         selectedItem = 2;
+    }
+
+    @Override
+    public void onDestroy()
+    {
+        super.onDestroy();
+        Fragment fragment = getSupportFragmentManager().getPrimaryNavigationFragment();//.findFragmentById(R.id.nmap);//getFragmentManager().findFragmentById(R.id.nav_view);
+        FragmentTransaction ft = this.getSupportFragmentManager().beginTransaction();
+        ft.remove(fragment);
+        ft.commit();
     }
 
 
